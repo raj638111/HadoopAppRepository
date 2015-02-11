@@ -10,7 +10,6 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -49,11 +48,12 @@ public class HelloMapReduceNew extends Configured implements Tool {
 		Job job = Job.getInstance(getConf());
 		job.setJarByClass(HelloMapReduceNew.class);
 		
-	    job.setOutputKeyClass(Text.class);
+	    job.setOutputKeyClass(Text.class);			//?? : 	What if I do not set the out key & value class
+	    											//		This is a must and conveyed as Redundant in the book
 	    job.setOutputValueClass(IntWritable.class);
 
 	    job.setMapperClass(MyMapper.class);
-	    job.setReducerClass(MyReducer.class); //By default the No of Reduces is '1'
+	    job.setReducerClass(MyReducer.class); 		//By default the No of Reducers is '1'
 
 	    job.setInputFormatClass(TextInputFormat.class);
 	    job.setOutputFormatClass(TextOutputFormat.class);
