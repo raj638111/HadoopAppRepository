@@ -1,4 +1,4 @@
-package com.demo.helloworld;
+package helloworld;
 
 
 import java.io.IOException;
@@ -38,6 +38,7 @@ public class HelloMapReduce extends Configured implements Tool {
 	        //if(StringUtils.isAlphanumeric(key.toString()) && !StringUtils.isAlphaSpace(key.toString()) ){
 	        	int sum = 0;
 	            for (IntWritable val : values) {
+	            	System.out.println("Key -> " + key + ", Value -> " + val);
 	                sum += val.get();
 	            }
 	            System.out.println("Reducer : reduce() : Key -> " + key + ", Value Count -> " + sum);

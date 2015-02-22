@@ -1,0 +1,10 @@
+job.query.select.m
+job.query.where.m
+job.query.sum.mR
+job.query.join_mapside.mR
+
+
+Input & Output
+--------------------
+/src/main/resources/input/airlinedataset/sampledata
+/src/main/resources/output
