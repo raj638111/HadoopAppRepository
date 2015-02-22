@@ -6,5 +6,5 @@ job.query.join_mapside.mR
 
 Input & Output
 --------------------
-/src/main/resources/input/airlinedataset/sampledata
-/src/main/resources/output
+src/main/resources/input/airlinedataset/sampledata
+src/main/resources/output
