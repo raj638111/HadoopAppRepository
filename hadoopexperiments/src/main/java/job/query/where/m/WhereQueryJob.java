@@ -14,7 +14,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import custom.mapper.WhereQueryMapper;
+import components.mapper.WhereQueryMapper;
 
 //Select field1, field2, ... from <Input file> where DelayInArrival > 10min (or) DelayInDeparture > 10 min
 //hadoop jar <*.jar> <Package.classname> -D map.where.delay=10 /input /output

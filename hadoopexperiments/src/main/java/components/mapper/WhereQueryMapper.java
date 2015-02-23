@@ -1,4 +1,4 @@
-package custom.mapper;
+package components.mapper;
 
 import java.io.IOException;
 

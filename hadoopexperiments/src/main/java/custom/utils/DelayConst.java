@@ -12,5 +12,9 @@ public class DelayConst {
     public static final IntWritable DEPARTURE_ON_TIME=new IntWritable(4);
     public static final IntWritable IS_CANCELLED=new IntWritable(5);
     public static final IntWritable IS_DIVERTED=new IntWritable(6);
+    
+    public static final IntWritable TYPE=new IntWritable(0);
+    public static final IntWritable VALUE=new IntWritable(1);
+
 
 }

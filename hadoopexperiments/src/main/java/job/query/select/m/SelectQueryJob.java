@@ -14,7 +14,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import custom.mapper.SelectQueryMapper;
+import components.mapper.SelectQueryMapper;
 
 //SELECT Flight Date, Day of week, Dep Time... from <Input File>;
 

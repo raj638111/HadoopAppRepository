@@ -1,4 +1,4 @@
-package custom.reducer;
+package components.reducer;
 
 import java.io.IOException;
 import java.text.DecimalFormat;

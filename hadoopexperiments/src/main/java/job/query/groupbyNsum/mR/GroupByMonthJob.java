@@ -14,8 +14,8 @@ import org.apache.hadoop.util.GenericOptionsParser;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import custom.mapper.DelayRecordCreationMapper;
-import custom.reducer.GroupByMonthReducer;
+import components.mapper.DelayRecordCreationMapper;
+import components.reducer.GroupByMonthReducer;
 
 
 //SELECT month, count(*), Proportion(arrivalOnTime), Proportion(arrivalOnDelay), .... from <Input File> GROUP BY Month
