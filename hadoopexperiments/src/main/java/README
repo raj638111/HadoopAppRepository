@@ -8,3 +8,8 @@ Input & Output
 --------------------
 src/main/resources/input/airlinedataset/sampledata
 src/main/resources/output
+
+
+Query Jobs (Basics to Advanced)
+--------------------------------------
+SelectQueryJob -> WhereQueryJob -> GroupByMonthJob -> GroupByMonthWithCombinerJob

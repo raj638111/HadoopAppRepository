@@ -17,6 +17,8 @@ public class WhereQueryMapper extends
 	
 	private int delayInMinutes = 0;
 
+	//Invoked once the Mapper starts. There is also another method
+	//cleanup() that runs at end of each job
 	@Override
 	public void setup(Context context) {
 		this.delayInMinutes = context.getConfiguration().getInt(
@@ -51,4 +53,6 @@ public class WhereQueryMapper extends
 		}
 
 	}
+	
+	
 }
