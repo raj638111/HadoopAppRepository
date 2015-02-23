@@ -1,25 +1,27 @@
-package components.combiner;
+package components.reducer;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.MapWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 
 import custom.utils.DelayConst;
 
-public class DelayRecordMapCreationCombiner extends Reducer<Text, MapWritable, Text, MapWritable> {
+public class GroupByMonthWithMapInputReducer extends Reducer<Text, MapWritable, NullWritable, Text> {
     public void reduce(Text key, Iterable<MapWritable> values, Context context) 
   throws IOException, InterruptedException {
-        int totalRecords = 0;
-        int arrivalOnTime = 0;
-        int arrivalDelays = 0;
-        int departureOnTime = 0;
-        int departureDelays = 0;
-        int cancellations = 0;
-        int diversions = 0;
+        double totalRecords = 0;
+        double arrivalOnTime = 0;
+        double arrivalDelays = 0;
+        double departureOnTime = 0;
+        double departureDelays = 0;
+        double cancellations = 0;
+        double diversions = 0;
         for(MapWritable v:values){   
            IntWritable type = (IntWritable)v.get(DelayConst.TYPE);
            IntWritable value = (IntWritable)v.get(DelayConst.VALUE);
@@ -30,7 +32,7 @@ public class DelayRecordMapCreationCombiner extends Reducer<Text, MapWritable, T
                arrivalOnTime=arrivalOnTime+value.get();
            }
            if(type.equals(DelayConst.ARRIVAL_DELAY)){
-               arrivalDelays=arrivalDelays+value.get();
+               arrivalDelays=arrivalOnTime+value.get();
            }
            if(type.equals(DelayConst.DEPARTURE_ON_TIME)){
                departureOnTime=departureOnTime+value.get();
@@ -45,20 +47,17 @@ public class DelayRecordMapCreationCombiner extends Reducer<Text, MapWritable, T
                diversions=diversions+value.get();
            } 
            
-        }     
-        context.write(key, getMapWritable(DelayConst.RECORD,new IntWritable(totalRecords)));     
-        context.write(key, getMapWritable(DelayConst.ARRIVAL_ON_TIME,new IntWritable(arrivalOnTime)));     
-        context.write(key, getMapWritable(DelayConst.ARRIVAL_DELAY,new IntWritable(arrivalDelays)));     
-        context.write(key, getMapWritable(DelayConst.DEPARTURE_ON_TIME,new IntWritable(departureOnTime)));     
-        context.write(key, getMapWritable(DelayConst.DEPARTURE_DELAY,new IntWritable(departureDelays)));     
-        context.write(key, getMapWritable(DelayConst.IS_CANCELLED,new IntWritable(cancellations))); 
-        context.write(key, getMapWritable(DelayConst.IS_DIVERTED,new IntWritable(diversions)));
-  }
-    
-  private MapWritable getMapWritable(IntWritable type,IntWritable value){
-      MapWritable map = new MapWritable();
-      map.put(DelayConst.TYPE, type);
-      map.put(DelayConst.VALUE, value);
-      return map;
+        }
+        DecimalFormat df = new DecimalFormat( "0.0000" );
+        StringBuilder output = new StringBuilder(key.toString());
+        output.append(",").append(totalRecords);
+       
+        output.append(",").append(df.format(arrivalOnTime/totalRecords));
+        output.append(",").append(df.format(arrivalDelays/totalRecords));
+        output.append(",").append(df.format(departureOnTime/totalRecords));
+        output.append(",").append(df.format(departureDelays/totalRecords));
+        output.append(",").append(df.format(cancellations/totalRecords));
+        output.append(",").append(df.format(diversions/totalRecords));
+        context.write(NullWritable.get(), new Text(output.toString()));
   }
 }
