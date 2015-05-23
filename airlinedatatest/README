@@ -1,0 +1,5 @@
+Data-set format
+	year		(1987 - 2008)
+	month		(1 - 12)
+	dayofmonth	(1 - 31)
+	dayofweek	(1 - 7)
