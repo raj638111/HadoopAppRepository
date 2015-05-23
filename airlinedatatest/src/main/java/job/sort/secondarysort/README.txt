@@ -7,21 +7,20 @@ Eclipse Arguments
 ------------------------------------------------------
 Output Reference in Eclipse
 ----------------------------
-	src/main/resources/results/job_sort_totalorder
+	src/main/resources/results/job_sort_secondarysort
 	
 ------------------------------------------------------
 Output Format
 ----------------------------
-	Month, Day of the Week, Year, Date, ...
+	<Arrival Delay Record>|<Previous Arrival Delay Record>	
 
 ------------------------------------------------------
 Hadoop Command
 ----------------------
-	hadoop jar airlinedatatest-0.0.1-SNAPSHOT.jar job.sort.totalorder.SortAscMonthDescWeekMRJob  -Dmapred.reduce.tasks=4 input output 
-	hadoop jar airlinedatatest-0.0.1-SNAPSHOT.jar job.sort.totalorder.SortAscMonthDescWeekMRJob input output
+	hadoop jar airlinedatatest-0.0.1-SNAPSHOT.jar job.sort.secondarysort.AnalyzeConsecutiveArrivalDelaysMRJob  input output 
 	
 ------------------------------------------------------
 Reference
 ----------------------
-	Pro Apache Hadoop : Page : 89
+	Pro Apache Hadoop : Page : 103
 	
