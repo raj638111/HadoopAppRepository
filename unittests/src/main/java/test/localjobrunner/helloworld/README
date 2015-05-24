@@ -1,0 +1,24 @@
+
+
+What it can do
+------------------
+- Can be used to test any input & output format unlike MRUnit
+- Local Job Runner is set using mapreduce.framework.name=local
+- Entire MapReduce Engine runs in a single JVM
+- Can also be used to access HDFS(Apart from Local File system)
+
+De-merits
+----------
+- Not possible to test Partitioners(Multiple Reducers) because of single JVM
+
+What Next
+------------
+- Mini MR Cluster
+
+
+Reference
+--------------
+
+H.D.Guide : Page 157
+P.A.Hadoop : Page 173
+ 

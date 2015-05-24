@@ -1,0 +1,10 @@
+
+Replicates the entire cluser in-memory
+Separate JVM is launched for each Tasks
+
+Are used extensively in Hadoop own automated test suite
+
+Reference 
+-------------
+H.D.Guide : Page 159
+P.A.Hadoop : Page 176

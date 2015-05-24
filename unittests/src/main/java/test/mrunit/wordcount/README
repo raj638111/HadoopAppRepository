@@ -1,0 +1,8 @@
+
+
+Limitation of MR Unit
+	Cannot test Partitioners & Multiple Reducer
+	No support for custom input & output format
+	
+What Next
+	Local Job Runner
