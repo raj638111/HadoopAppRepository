@@ -23,4 +23,5 @@ Hadoop Command
 Reference
 ----------------------
 	Pro Apache Hadoop : Page : 103
+	More : D.Guid : #262
 	
