@@ -1,3 +1,9 @@
 
 
-	* Pig can work with Hive using HCatalog #431
+	# Pig can work with Hive using HCatalog #431
+	
+	# Operator types #435
+		+ Relational Operator #435
+		+ Diagnostic Operator	#435
+			- Are not added to the Logical Plan
+			- DESCRIBE, EXPLAIN, ILLUSTRATE  

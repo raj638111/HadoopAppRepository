@@ -1,0 +1,12 @@
+
+
+	#	Can be used to view the logical & physical Plan of a relation
+	#	Is a good way to find how may Map & Reduce Job will run for a Query #434
+	
+	# 	Example
+		
+			records = 	LOAD 'src/main/resources/input/tab_sample.txt'
+						AS (year:chararray, temperature:int, quality:int);
+			EXPLAIN records;
+	
+		

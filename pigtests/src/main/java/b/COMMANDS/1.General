@@ -1,0 +1,17 @@
+
+
+	# Two types of Commands,
+		+ File system commands
+	  	+ Utility commands
+	  	
+	# set
+		+ To Turn on/off debugging #437
+	
+	# exec & run
+		+ Is used to run the Pig script #437
+		+ exec 
+			- Runs the script in Batch mode(In new grunt shell) #437
+			- Multiquery execution is done during 'exec'	
+		+ run 
+			- It is as if commands have been entered manually
+			

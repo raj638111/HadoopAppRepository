@@ -1,27 +1,44 @@
 
+Grunt options
+----------------------------------------------------
+
+	# Set log4j properties
+		+ pig -x local -4 pg/conf/log4j.properties
+	# Set Job Name for Pig
+		+ -d <Job name>	
+		+ Job name default to script name when running a Script
+	
 General
 ----------------------------------------------------
 	
-	# Set log4j properties
-		- pig -x local -4 pg/conf/log4j.properties
 	# Comments
 		-- or /* */ 
 		
 	# Keyword Types
-		Operators	(LOAD, ILLUSTRATE) #433
-		commands	(cat, ls)
-		Expression	(matches, FLATTEN)
-		Functions	(DIFF, MAX)
+		+ Operators	
+			- LOAD, ILLUSTRATE #433, ##435
+		+ Commands	
+			- cat, ls (Are executed immediately) ##436
+		+ Expression
+			- matches, FLATTEN	##438
+		+ Functions	
+			- DIFF, MAX
+		+ Statements	
+			- REGISTER, DEFINE & IMPORT ##436
 		
 	
 Useful Grunt(Pig Shell) Commands
 ----------------------------------------------------
 
 	# List files in File system
-		- ls /
-		- Can be local/HDFS based on the mode #432
-		- Note : There is no need for semicolon here 
+		+ ls /
+		+ Can be local/HDFS based on the mode #432
+		+ Note : There is no need for semicolon here 
+		
 
+Some useful terms
+----------------------------------------------------
+	# Multiquery Execution #434
 			
 	
 		

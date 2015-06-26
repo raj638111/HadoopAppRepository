@@ -1,0 +1,18 @@
+
+	#	Is used to store a 'relation' into File(Similar to DUMP 
+		which dumps the result in Console)
+	# 	In Interactive mode, 
+			-	Acts like DUMP and gets executed(ie logical plan is converted
+	 			into physical plan & gets executed) #434
+	#	In Batch Mode,
+			-	Pig will parse the whole script for multiple STORE statements
+			-	This is called **MultiQuery Execution
+			
+	#	Can also be disabled using -M #434 	
+		
+	#	Example
+			A = LOAD 'input/pig/multiquery/A';
+			B = FILTER A BY $1 == 'banana';
+			C = FILTER A BY $1 != 'banana';
+			STORE B INTO 'output/b';
+			STORE C INTO 'output/c';	
