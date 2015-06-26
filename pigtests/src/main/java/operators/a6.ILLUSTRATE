@@ -1,0 +1,49 @@
+
+Info
+---------------------------------------------------
+
+	- Can be used to find/illustrate out the data flow from start to the end #429
+	
+	records = 	LOAD 'src/main/resources/input/tab_sample.txt'
+				AS (year:chararray, temperature:int, quality:int);
+	
+	filtered_records = 	FILTER records BY temperature != 9999 AND
+						quality IN (1);
+	
+	grouped_records = GROUP filtered_records BY year;
+	
+	describe grouped_records;
+		grouped_records: {group: chararray,filtered_records: {(year: chararray,temperature: int,quality: int)}}
+	
+	
+	max_temp = 	FOREACH grouped_records GENERATE group,
+				MAX(filtered_records.temperature);
+	
+	ILLUSTRATE max_temp //This illustrate how we got one of the records in 'max_temp'
+						//Pig might also add some dummy data for illustration purpose #430
+	
+-------------------------------------------------------------------------------
+| records     | year:chararray      | temperature:int      | quality:int      | 
+-------------------------------------------------------------------------------
+|             | 1949                | 111                  | 1                | 
+|             | 1929                | 80                   | 3                | 
+|             | 1949                | 78                   | 1                | 
+-------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+| filtered_records     | year:chararray      | temperature:int      | quality:int      | 
+----------------------------------------------------------------------------------------
+|                      | 1949                | 111                  | 1                | 
+|                      | 1949                | 78                   | 1                | 
+----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| grouped_records     | group:chararray      | filtered_records:bag{:tuple(year:chararray,temperature:int,quality:int)}                          | 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+|                     | 1949                 | {}                                                                                                | 
+|                     | 1949                 | {}                                                                                                | 
+--------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------
+| max_temp     | group:chararray      | :int      | 
+---------------------------------------------------
+|              | 1949                 | 111       | 
+---------------------------------------------------
+	

@@ -1,0 +1,28 @@
+
+
+Info
+---------------------------------------
+
+	# FOREACH 
+		Processes each row to derive a new row	#429
+	# GENERATE
+		Is used to define new fields
+	
+	records = 	LOAD 'src/main/resources/input/tab_sample.txt'
+				AS (year:chararray, temperature:int, quality:int);
+	
+	filtered_records = 	FILTER records BY temperature != 9999 AND
+						quality IN (1);
+	
+	grouped_records = GROUP filtered_records BY year;
+	
+	describe grouped_records;
+		grouped_records: {group: chararray,filtered_records: {(year: chararray,temperature: int,quality: int)}}
+	
+	
+	max_temp = 	FOREACH grouped_records GENERATE group,
+				MAX(filtered_records.temperature);
+	
+	(1949,111)
+	(1950,22)
+	

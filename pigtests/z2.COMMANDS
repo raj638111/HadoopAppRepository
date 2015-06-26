@@ -1,0 +1,27 @@
+
+General
+----------------------------------------------------
+	
+	# Set log4j properties
+		- pig -x local -4 pg/conf/log4j.properties
+	# Comments
+		-- or /* */ 
+		
+	# Keyword Types
+		Operators	(LOAD, ILLUSTRATE) #433
+		commands	(cat, ls)
+		Expression	(matches, FLATTEN)
+		Functions	(DIFF, MAX)
+		
+	
+Useful Grunt(Pig Shell) Commands
+----------------------------------------------------
+
+	# List files in File system
+		- ls /
+		- Can be local/HDFS based on the mode #432
+		- Note : There is no need for semicolon here 
+
+			
+	
+		

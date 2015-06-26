@@ -1,0 +1,8 @@
+
+
+	- Is used to find the Schema of an alias(a Relation) #428
+	
+	- Example
+		DESCRIBE records; #428
+	
+	
