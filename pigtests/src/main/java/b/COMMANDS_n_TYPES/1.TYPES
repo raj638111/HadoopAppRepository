@@ -1,0 +1,10 @@
+
+	# Types
+		+	boolean, int, tuple, bag, map & more... ##440
+		
+	# Built-in functions
+		+ 	TOTUPLE, TOBAG & TOMAP can be used to convert an expression 
+			into tuple, bag or map
+			
+	# Relations & bags
+		+ 	Are quite similar ...more here #440

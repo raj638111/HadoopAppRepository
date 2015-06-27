@@ -3,4 +3,23 @@
   <groupId>com.pigtests</groupId>
   <artifactId>pigtests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  <dependency>
+	<groupId>org.apache.pig</groupId>
+	<artifactId>pig</artifactId>
+	<version>0.14.0</version>
+</dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.2.0</version>          
+        </dependency>
+       
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.3</version>
+        </dependency>
+
+  </dependencies>
 </project>

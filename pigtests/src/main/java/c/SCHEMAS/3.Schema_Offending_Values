@@ -1,0 +1,39 @@
+
+Introduction
+----------------------------------------------
+
+	# A field offending the Schema is set to 'null'(empty) #443
+	
+	records = 	LOAD 'src/main/resources/input/offending_sample.txt'
+				AS (year:chararray, temperature:int, quality:int);
+				
+	(1950,0,1)
+	(1950 ,22,1)
+	(1950 ,,1)	//Note there the offending field is empty
+	
+				
+Getting corrupt record count
+----------------------------------------------
+
+	corrupt_records = FILTER records BY temperature is null;  //443
+		(1950 ,,1)
+		(1999,,1)
+		
+	grouped = GROUP corrupt_records ALL;
+		(all,{(1999,,1),(1950 ,,1)})
+		
+	grunt> describe grouped;
+		grouped: {group: chararray,corrupt_records: {(year: chararray,temperature: int,quality: int)}}
+		
+	all_grouped = FOREACH grouped GENERATE group, COUNT(corrupt_records);
+		(all,2)
+		
+Filtering invalid tuple sizes
+----------------------------------------------
+
+		#444 (***THIS IS NOT WORKING)
+		A = LOAD 'src/main/resources/input/missing_field.txt';
+		
+		B = FILTER A BY SIZE(TOTUPLE(*)) > 1;
+	
+		

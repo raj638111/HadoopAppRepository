@@ -1,0 +1,16 @@
+
+	# 	Can be used to split a relation into two #444
+	# 	Can be handy to split a dataset into good & bad relation 
+		for further processing #444
+		
+		
+	records = 	LOAD 'src/main/resources/input/offending_sample.txt'
+				AS (year:chararray, temperature:int, quality:int);
+	
+	SPLIT 	records INTO good_records IF temperature is not null,
+			bad_records OTHERWISE;	
+	
+	grunt> dump bad_records; 
+		(1950 ,,1)
+		(1999,,1)
+	

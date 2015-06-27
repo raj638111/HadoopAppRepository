@@ -1,0 +1,23 @@
+
+
+Accessing Schema-less relation
+-----------------------------------------------------------
+
+	# Can be accessed using $<index> #442
+
+	records = 	LOAD 'src/main/resources/input/tab_sample.txt'
+	
+	grunt> describe records
+		Schema for records unknown.
+		
+	grunt> dump records
+		(1950,0,1)
+		(1950,22,1)
+		
+	projected_records = FOREACH records GENERATE $2, $1, $0;
+	
+	grunt> dump project_records;
+		(1,0,1950)
+		(1,22,1950)
+	
+	

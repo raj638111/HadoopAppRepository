@@ -1,0 +1,18 @@
+
+	# Can be used call the methods available in existing Java Library #453
+	# Is less efficient as it used Java Reflection
+	
+	# Available Invokers
+		+ InvokeForString
+		+ InvokeForInt
+		+ more...#453
+		
+	# Example
+		
+		DEFINE trim InvokeForString('org.apache.commons.lang.StringUtils.trim', 'String');
+		
+		records = 	LOAD 'src/main/resources/input/pipe_sample.txt' USING PigStorage('|')
+					AS (year:chararray, temperature:int, quality:int);
+					
+		trimmed = FOREACH records GENERATE trim(year);
+	

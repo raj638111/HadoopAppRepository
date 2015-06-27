@@ -1,0 +1,14 @@
+
+HCatalog
+-------------------------------------------------------------------
+
+	# Is a component of Hive that provides access to Schemas Hive Metastore #442
+	# Example
+		% pig -useHCatalog
+		
+		grunt> records = LOAD 'records' USING org.apache.hcatalog.pig.HCatLoader();
+		
+		grunt> DESCRIBE records;
+			records: {year: chararray,temperature: int,quality: int}
+			
+Offending value is set to 'null'
