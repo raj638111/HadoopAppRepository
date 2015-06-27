@@ -1,0 +1,5 @@
+
+	# 	If you have a Bag as a field, flattening it will convert 
+		each Tuple inside the bag into a Record
+	# 	Check COGROUP for example
+	

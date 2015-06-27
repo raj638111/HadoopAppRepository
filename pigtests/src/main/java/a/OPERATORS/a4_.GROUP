@@ -1,9 +1,17 @@
 
 Info
---------------------------------------------
+-------------------------------------------- #429
 
-	#429
+	# Is used to group data in a single Relation #464
+	# First field is given the alias 'group'
+	# Second field contain a Bag having same schema as original Relation
+	# 'ALL' : 	Used to group the entire relation into one single Group
+				Is useful to count the no of tuples in the Group #464
+	# 'ANY' :	Is used to group the tuples in a relation randomly
 	
+Example 1 
+-------------------------------------------- #429
+
 	records = 	LOAD 'src/main/resources/input/tab_sample.txt'
 				AS (year:chararray, temperature:int, quality:int);
 	
@@ -16,7 +24,14 @@ Info
 		
 	grunt> describe grouped_records;
 		grouped_records: {group: chararray,filtered_records: {(year: chararray,temperature: int,quality: int)}}
-			
+		
+Example 2 : (ALL)
+-------------------------------------------- #464
+ 
+	grunt> C = GROUP A ALL;
+	grunt> DUMP C;
+	(all,{(Eve,apple),(Joe,banana),(Ali,apple),(Joe,cherry)})
+				
 		
 Note
 --------------------------------------------

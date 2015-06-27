@@ -1,0 +1,21 @@
+Info
+--------------------------------------------------
+
+	# Note 
+		+ 	SORT
+			-	A sorted relation if processed again, do not 
+				guarantee sorting #465
+		+ 	LIMIT
+			-	When not sorted LIMIT usually selects any N
+				tuples from the relation
+			-	***Recommended to use LIMIT as it can improve 
+				performance #466 
+
+Example
+-------------------------------------------------- #465
+
+	DUMP A;
+		(2,3)
+		(1,2)
+		(2,4)
+	B = ORDER A BY $0, $1 DESC;		

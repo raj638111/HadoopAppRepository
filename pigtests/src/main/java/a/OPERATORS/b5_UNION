@@ -1,0 +1,19 @@
+
+	# Can be used to combine two relations #466
+	# Note : **Schema is not guaranteed to be available after UNION  
+	
+	grunt> DUMP A;
+		(2,3)
+		(1,2)
+		(2,4)
+	grunt> DUMP B;
+		(z,x,8)
+		(w,y,1)
+
+	grunt> C = UNION A, B;
+	grunt> DUMP C;
+		(2,3)
+		(z,x,8)
+		(1,2)
+		(w,y,1)
+		(2,4)

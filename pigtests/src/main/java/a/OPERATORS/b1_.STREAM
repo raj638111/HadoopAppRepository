@@ -1,0 +1,9 @@
+
+
+	# Can be used to apply an external program to process the relation #458
+	# Check an example here of Python script #459
+	# ** Use DEFINE operator to ship the external program to cluster
+		DEFINE is_good_quality `is_good_quality.py`
+	
+	C = STREAM A THROUGH `cut -f 2`;
+	DUMP C;

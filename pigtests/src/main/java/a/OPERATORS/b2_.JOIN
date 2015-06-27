@@ -1,0 +1,35 @@
+
+Inner Join (For Large Datasets)
+------------------------------------------ #460
+
+	A = LOAD 'src/main/resources/input/join_master.txt';
+	B = LOAD 'src/main/resources/input/join_data.txt';
+	
+	C = JOIN A BY $0, B BY $1;
+
+	(2,Tie,Hank,2)
+	(2,Tie,Joe,2)
+	(3,Hat,Eve,3)
+	(4,Coat,Hank,4)
+					
+		
+Inner Join (For Small Datasets)
+------------------------------------------ #460
+
+	** 	Use 'replicated' for the small dataset. This dataset
+		will become part of Distributed Cache
+		
+	C = JOIN A BY $0, B BY $1 USING 'replicated';
+
+
+Outer Join
+------------------------------------------ #460
+	 
+	C = JOIN A BY $0 LEFT OUTER, B BY $1;
+	
+	
+
+More
+------------------------------------------ 
+	**Composite Keys can be specified in JOIN using BY clause	 
+	Check Example here...#462

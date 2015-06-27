@@ -7,6 +7,9 @@ Info
 		Processes each row to derive a new row	#429
 	# GENERATE
 		Is used to define new fields
+
+Example 
+--------------------------------------- #429
 	
 	records = 	LOAD 'src/main/resources/input/tab_sample.txt'
 				AS (year:chararray, temperature:int, quality:int);
@@ -25,4 +28,27 @@ Info
 	
 	(1949,111)
 	(1950,22)
+
+Example (Nested FOREACH) 
+--------------------------------------- #457
+
+	REGISTER target/pigtests-0.0.1-SNAPSHOT.jar;
+	DEFINE isGood e.UDF_FILTER.IsGoodQuality();
+	
+	records = 	LOAD 'src/main/resources/input/190{1,2,3,4,5}*'
+				USING g.UDF_LOAD.CutLoadFunc('5-10,11-15,16-19,88-92,93-93')
+				AS (usaf:chararray, wban:chararray, year:int, temperature:int, quality:int);
+				
+	--**** No of reducers is specified using PARALLEL
+	grouped_records = GROUP records BY year PARALLEL 30; 
+
+	--Would test FLATTEN later???
+	year_stats = FOREACH grouped_records {
+		uniq_stations = DISTINCT records.usaf;
+		good_records = FILTER records BY isGood(quality);
+		GENERATE FLATTEN(group), COUNT(uniq_stations) AS station_count,
+		COUNT(good_records) AS good_record_count, COUNT(records) AS record_count;
+	}
+	DUMP year_stats;
+
 	

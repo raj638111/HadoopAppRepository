@@ -1,0 +1,16 @@
+Info
+--------------------------------------------------- #467
+
+	# Configuration Parameters
+		+ pig.exec.reducers.bytes.per.reducer
+			- Default is 1 GB
+		+ pig.exec.reducers.max
+			- Default is 999
+
+'PARALLEL' Operator
+--------------------------------------------------- #467
+
+	# Can be used to set the no of reducers for
+	
+		+ (GROUP, COGROUP, JOIN, CROSS)
+		+ DISTINCT & ORDER

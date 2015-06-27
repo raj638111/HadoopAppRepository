@@ -1,0 +1,46 @@
+
+Info
+--------------------------------------------- #461
+
+	# 	JOIN produces a set of Tuples whereas COGROUP 
+		produces nested set of tuples #461
+	#	Each Tuple in the Set is a Key followed by Bags of Tuples
+		
+	A = LOAD 'src/main/resources/input/join_master.txt';
+	B = LOAD 'src/main/resources/input/join_data.txt';
+	
+Outer Join
+--------------------------------------------- #461
+
+	D = COGROUP A BY $0, B BY $1;
+		(or)
+	D = COGROUP A BY $0 OUTER, B BY $1 OUTER;
+
+		(0,{},{(Ali,0)})
+		(1,{(1,Scarf)},{})
+		(2,{(2,Tie)},{(Hank,2),(Joe,2)})
+		...	
+	
+Inner Join
+--------------------------------------------- #462
+
+	G = COGROUP A BY $0 INNER, B BY $1 INNER;
+	
+		(2,{(2,Tie)},{(Hank,2),(Joe,2)})
+		...
+	
+	H = FOREACH G GENERATE FLATTEN($1) --Just checking FLATTEN
+	
+		(2,Tie)
+		...
+	
+	I = FOREACH G GENERATE FLATTEN($2)
+	
+		(Hank,2)
+		(Joe,2)
+		
+	J = FOREACH G GENERATE FLATTEN($1), FLATTEN($2);
+	 	
+		(2,Tie,Hank,2)
+		(2,Tie,Joe,2)
+		...	
