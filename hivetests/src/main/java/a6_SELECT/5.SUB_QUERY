@@ -1,0 +1,22 @@
+
+    
+ 
+    #   CREATE TABLE    records2 (station STRING, year STRING, temperature INT, quality INT) 
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '\t';
+                    
+    #   LOAD DATA LOCAL INPATH  'src/main/input/sample2.txt'   --Load from local file
+                            OVERWRITE INTO TABLE records2;
+    
+    
+    #  SELECT   station, year, AVG(max_temperature) --508
+                FROM (
+                    SELECT  station, year, MAX(temperature) AS max_temperature
+                            FROM records2
+                            WHERE temperature != 9999 AND quality IN (0, 1, 4, 5, 9)
+                            GROUP BY station, year
+                ) mt
+                GROUP BY station, year;
+                
+                
+        +   *** This query do not make any sense            

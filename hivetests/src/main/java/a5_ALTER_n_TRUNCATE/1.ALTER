@@ -1,0 +1,33 @@
+
+   
+Change Table Name (Internal/Managed Table)
+---------------------------------------------------502
+
+    #   Changes both the Meta Info as well as directory name in warehouse
+    
+    #   ALTER TABLE records_duplicate RENAME TO records_altered;
+    
+        +   !hdfs dfs -ls /user/hive/warehouse;
+            -   ...
+            -   drwxr-xr-x   - mountain supergroup          0 2015-06-28 20:19 /user/hive/warehouse/records_altered
+    
+    
+Change Table Name (External Table)
+---------------------------------------------------502
+
+    #   Only schema is changed, external directory name remain the same
+    
+    #   ALTER TABLE records_external RENAME TO records_extnl;
+       
+        +   !hdfs dfs -ls /user/mountain
+            -   ...
+            -   drwxr-xr-x   - mountain supergroup          0 2015-06-28 14:53 /user/mountain/records_external
+
+
+Add New Column
+---------------------------------------------------502
+
+   #    ALTER TABLE records_altered ADD COLUMNS (desc STRING)
+   
+        +   New column added to the end 
+    

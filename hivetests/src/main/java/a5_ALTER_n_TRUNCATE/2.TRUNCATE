@@ -1,0 +1,30 @@
+
+
+TRUNCATE (Internal / Table)
+-------------------------------------------502
+
+    #   Can be used to delete data in internal table
+    
+    #   TRUNCATE TABLE  logs_partition_duplicate
+    
+        +   Note : Although the data is delete Partiton never get deleted
+        +   show partitions logs_partition_duplicate;
+            -   dt=2009-01-01/country=IN
+            
+            
+TRUNCATE (External Table)
+-------------------------------------------502
+
+    #   TRUNCATE **DO NOT** work for external tables
+    #   Use !hdfs dfs -rmf instead to remove the data directory
+    
+    #   truncate table records_extnl;
+    
+        -   FAILED: SemanticException [Error 10146]: Cannot truncate non-managed table records_extnl.
+        
+    #   !hdfs dfs -rmr /user/mountain/records_external;
+    
+        -   SELECT query will return empty now            
+            
+            
+    

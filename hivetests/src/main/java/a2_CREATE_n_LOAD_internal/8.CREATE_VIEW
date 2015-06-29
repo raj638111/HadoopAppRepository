@@ -1,0 +1,22 @@
+
+
+Info
+----------------------------------------------#509
+
+    #   Data in view is not materialized to Disk
+    #   Only retrieved at query execution time
+
+    
+Example
+----------------------------------------------#509
+
+    #   CREATE VIEW valid_records_view
+                    AS
+                    SELECT *
+                        FROM records2
+                        WHERE temperature != 9999 AND quality IN (0, 1, 4, 5, 9);
+                        
+    #   SELECT * from valid_records_view;                        
+
+    
+    

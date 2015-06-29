@@ -1,0 +1,20 @@
+
+ORDER BY
+-----------------------------------------------503
+
+    #   Provides total order sort 
+
+SORT & DISTRIBUTED BY
+-----------------------------------------------503
+
+    #  SORT provides Partial Sort
+    #  DISTRIBUTED BY can be used to decide on the Partitioner
+    
+    #   FROM records
+                        SELECT year, temperature
+                        DISTRIBUTE BY year
+                        SORT BY year ASC, temperature DESC;
+                        
+                        
+    #   CLUSTER BY can be used when columns 
+        of SORT BY & DISTRIBUTED BY are same

@@ -1,0 +1,10 @@
+
+ Info
+ --------------------------------------------------503
+ 
+    #   Can be used to create a table with a similar Schema
+        Schema also reflects the Partition
+    
+    #   CREATE TABLE logs_schema_only LIKE logs_partition;
+    
+    #   NOTE : Belive this is common for both internal & external table 

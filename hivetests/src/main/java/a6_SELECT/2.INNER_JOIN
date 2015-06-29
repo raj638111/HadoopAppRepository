@@ -1,0 +1,22 @@
+
+Inner Join Example
+-------------------------------------------------
+
+    #   SELECT  sales.*, things.*   --505
+                FROM sales JOIN things ON (sales.id = things.id);
+            
+            (or)
+            
+    #   SELECT  sales.*, things.*   --506
+                FROM sales, things
+                WHERE sales.id = things.id;            
+            
+    #   NOTE : Hive only supports equijoin (ie sales.id = things.id)
+    
+Find no of MapReduce jobs for the join
+-------------------------------------------------
+
+    #   EXPLAIN
+                    SELECT sales.*, things.*
+                    FROM sales JOIN things ON (sales.id = things.id);
+             

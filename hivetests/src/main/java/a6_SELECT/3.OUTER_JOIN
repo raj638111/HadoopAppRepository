@@ -1,0 +1,7 @@
+
+
+    #   SELECT  sales.*, things.*   --506
+                FROM sales LEFT OUTER JOIN things ON (sales.id = things.id);
+                
+                
+    #   RIGHT OUTER JOIN, FULL OUTER JOIN here...#507                
