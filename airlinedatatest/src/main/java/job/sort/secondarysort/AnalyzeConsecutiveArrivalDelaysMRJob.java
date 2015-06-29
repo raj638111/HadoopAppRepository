@@ -25,8 +25,16 @@ import utils.keynval.ArrivalFlightKey;
 import utils.others.AirlineDataUtils;
 
 public class AnalyzeConsecutiveArrivalDelaysMRJob extends Configured implements Tool {
+	
+	/******************************
+	 *  MAPPER 
+	 ******************************/
     public static class AnalyzeConsecutiveDelaysMapper extends
             Mapper<LongWritable, Text, ArrivalFlightKey, Text> {
+    	
+    	/*
+    	 * 	map()
+    	 */
         public void map(LongWritable key, Text value, Context context)
                 throws IOException, InterruptedException {
             if (!AirlineDataUtils.isHeader(value)) {
@@ -44,8 +52,16 @@ public class AnalyzeConsecutiveArrivalDelaysMRJob extends Configured implements 
         }
     }
 
+    /******************************
+	 *  REDUCER 
+	 ******************************/
+    
     public static class AnalyzeConsecutiveDelaysReducer extends
             Reducer<ArrivalFlightKey, Text, NullWritable, Text> {
+    	
+    	/*
+    	 * reduce()
+    	 */
         public void reduce(ArrivalFlightKey key, Iterable<Text> values,
                 Context context) throws IOException, InterruptedException {            
             Text previousRecord = null;
@@ -73,6 +89,9 @@ public class AnalyzeConsecutiveArrivalDelaysMRJob extends Configured implements 
         }
     }
 
+    /***************************
+     * DRIVER
+     ***************************/
     public int run(String[] allArgs) throws Exception {
         Job job = Job.getInstance(getConf());
         job.setJarByClass(AnalyzeConsecutiveArrivalDelaysMRJob.class);

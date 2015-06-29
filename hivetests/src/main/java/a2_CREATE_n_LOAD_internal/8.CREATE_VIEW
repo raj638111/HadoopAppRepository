@@ -5,6 +5,7 @@ Info
 
     #   Data in view is not materialized to Disk
     #   Only retrieved at query execution time
+    #   We cannot LOAD or INSERT data into view
 
     
 Example
@@ -18,5 +19,5 @@ Example
                         
     #   SELECT * from valid_records_view;                        
 
-    
+    #   DESCRIBE EXTENDED valid_records_view;
     

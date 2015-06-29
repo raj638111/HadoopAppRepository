@@ -1,6 +1,0 @@
-word1
-word1
-word3
-word3
-word3
-word5
