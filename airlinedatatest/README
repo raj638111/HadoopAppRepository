@@ -9,24 +9,4 @@ Data-set format
 	
 	http://stat-computing.org/dataexpo/2009/the-data.html
 	
---------------------------------------------	
-What need to be practiced
---------------------------
-
-	- 	Find the reason for when running the Job in Eclipse as Java Application
-
-			log4j:WARN No appenders could be found for logger (org.apache.hadoop.metrics2.lib.MutableMetricsFactory).
-			log4j:WARN Please initialize the log4j system properly.
-			log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
-			
-	- 	Not able to run MRUnit. Find out the reason
-	
-	
-
---------------------------------------------	
-What is learned
---------------------------
-
-	- 	When running the MapReduce in Job in Eclipse as Java Application, the argument 	
-		-D<reduce count> has not effect
 
