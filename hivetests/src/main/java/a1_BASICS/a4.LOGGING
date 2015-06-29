@@ -1,0 +1,16 @@
+
+
+    # ${java.io.tmpdir}/${user.name}/hive.log  #477
+        - Normally ${java.io.tmpdir} is /tmp
+        
+    # hive -hiveconf hive.log.dir='/tmp/${user.name}'
+    
+    # conf/hive-log4j.properties
+    
+    # hive -hiveconf hive.root.logger=DEBUG,console
+        - **Redirects the log message to Console
+        
+        
+           
+            
+             

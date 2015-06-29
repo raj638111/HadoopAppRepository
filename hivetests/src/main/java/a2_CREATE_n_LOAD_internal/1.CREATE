@@ -1,0 +1,51 @@
+Info
+------------------------------------------------------
+
+    #   Internal table are also called 'Managed Tables'
+    #   When a table is created, an equivalent directory with the same name
+        is created in '/user/hive/warehouse'
+    #   **/user/hive/warehouse is either created in local file system (or)
+        HDFS file system depending on the Hadoop Property 'fs.DefaultFS' #474, #476    
+
+Create Table
+------------------------------------------------------ 
+
+    #   CREATE TABLE    records (year STRING, temperature INT, quality INT) --474
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '\t';
+                    
+        +   !hdfs dfs -ls /user/hive/warehouse
+              
+Load data from Local file
+------------------------------------------------------ 
+
+    #   LOAD DATA LOCAL INPATH  'src/main/input/sample.txt'   --Load from local file
+                            OVERWRITE INTO TABLE records;
+                                        
+        +   sample.txt is simply added in the same name in directory 'records'
+        +   ***OVERWRITE
+            -   Removes all the existing files in directory 'records'
+            -   When omitted,   New files are simply added to the existing one in directory 'records'
+                                Any existing file with the same name will be replaced #475
+                                
+Load data from HDFS File
+------------------------------------------------------ 
+    #   hdfs dfs -copyFromLocal 'src/main/input/sample.txt'  secondfile
+    #   LOAD DATA INPATH  'secondfile' INTO TABLE records;  --490(5)
+                                
+        +   !hdfs dfs -ls /user/hive/warehouse/records;
+            -rw-r--r--   1 mountain supergroup         51 2015-06-27 19:27 /user/hive/warehouse/records/sample.txt
+            -rw-r--r--   1 mountain supergroup         51 2015-06-28 14:01 /user/hive/warehouse/records/secondfile
+            
+        +   !hdfs dfs -ls /user/mountain
+            - **File 'seconfile' is no longer available in /user/mountain
+    
+Select the records in table
+------------------------------------------------------ 
+            
+    #   SELECT * from records;    -- Simple select do not run any MapReduce Job
+
+    #   SELECT      year, MAX(temperature)  -- This query does run MapReduce Job -- 475
+                    FROM records
+                    WHERE temperature != 9999 AND quality IN (0, 1, 4, 5, 9)
+                    GROUP BY year;    

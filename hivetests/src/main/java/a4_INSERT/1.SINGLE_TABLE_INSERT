@@ -1,0 +1,31 @@
+
+Info
+----------------------------------------------
+
+    Apart from LOAD, INSERT is another way to import data #499
+
+Simple Table insert
+----------------------------------------------
+
+    CREATE TABLE    records_duplicate (year STRING, temperature INT, quality INT) --474
+                    ROW FORMAT DELIMITED
+                    FIELDS TERMINATED BY '\t';
+
+    INSERT OVERWRITE TABLE  records_duplicate      --500
+                            SELECT *
+                            FROM records;
+                            
+                            
+Insert in Partition
+----------------------------------------------
+
+    CREATE TABLE    logs_partition_duplicate (ts BIGINT, line STRING)   --500
+                    PARTITIONED BY (dt STRING, country STRING);
+
+    INSERT OVERWRITE TABLE  logs_partition_duplicate   --500
+                            PARTITION (dt='2009-01-01', country='IN')
+                            SELECT ts, line
+                            FROM logs_partition;
+                            
+                                
+    SHOW PARTITIONS logs_partition_duplicate;                        

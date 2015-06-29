@@ -1,0 +1,13 @@
+
+    CREATE TABLE complex (  --488
+        c1 ARRAY<INT>,
+        c2 MAP<STRING, INT>,
+        c3 STRUCT<a:STRING, b:INT, c:DOUBLE>,
+        c4 UNIONTYPE<STRING, INT>
+    );
+    
+    SELECT c1[0], c2['b'], c3.c, c4 FROM complex; --488
+    
+    //....Pending : will need to be tested once in page 496
+    
+    

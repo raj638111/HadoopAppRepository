@@ -1,0 +1,24 @@
+
+Default Row format
+----------------------------------------------
+    
+    #   Default Row format is 'ROW FORMAT DELIMITED'
+    
+        +   CTRL A -> Field delimiter
+        +   CTRL B -> ARRAY or STRUC delimiter
+        +   more...#496   
+
+
+Custom Row format(RegexSerDe)
+----------------------------------------------
+
+    #   CREATE TABLE    stations (usaf STRING, wban STRING, name STRING)    --499
+                        ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+                        WITH SERDEPROPERTIES (
+                            "input.regex" = "(\\d{6}) (\\d{5}) (.{29}) .*"
+                        );
+                        
+                    
+    #   LOAD DATA LOCAL INPATH "src/main/input/stations-fixed-width.txt"
+                        INTO TABLE stations;
+        

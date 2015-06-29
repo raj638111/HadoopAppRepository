@@ -1,0 +1,16 @@
+
+Transaction
+-------------------------------------------------#483
+
+    # Supports Table & Partition level locking
+    # Done through ZooKeeper
+    # SHOW LOCKS
+    # Not enabled : Locks are not enabled by default 
+
+Indexes
+-------------------------------------------------#483
+
+    # 2 Types are available
+        + 'compact' index
+        + 'bitmap' index
+    

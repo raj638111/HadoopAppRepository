@@ -1,0 +1,29 @@
+
+Primitive types
+-----------------------------------------------#486
+
+    #   BOOLEAN
+    
+    #   TINYINT,  SMALLINT,   INT, BIGINT (vis-a-vis) 
+        byte,     short,      int, long
+      
+    #   FLOAT, DOUBLE, DECIMAL (vis-a-vis)
+        float, double, BigDecimal
+      
+        ** DECIMAL is commonly used to represent Currency values
+           
+    #   STRING          #487
+        VARCHAR(100)
+        CHAR(100)       Padded with trailing spaces
+        
+    #   BINARY
+    
+    #   TIMESTAMP       Provides nanosecond precision
+        DATE            Year + Month + Day
+        *Breadcrumb     to_utc_timestamp() & from_utc_timestamp() #488  
+        
+Complex types
+-----------------------------------------------#488
+    
+    # ARRAY, MAP, STRUCT, UNION ##486
+ 

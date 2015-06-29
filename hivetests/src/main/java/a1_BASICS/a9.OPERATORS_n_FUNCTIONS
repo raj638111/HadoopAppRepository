@@ -1,0 +1,17 @@
+
+Operators
+---------------------------------------------------------#488
+    x = 'a'         Equality testing
+    x IS NULL       -
+    x LIKE 'a%'     Pattern Matching
+    
+    
+    x OR y
+    
+Functions
+---------------------------------------------------------#488
+
+    concat()
+    SHOW FUNCTIONS
+    DESCRIBE FUNCTION length
+    

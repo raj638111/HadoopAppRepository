@@ -1,0 +1,39 @@
+
+Create table
+---------------------------------------------------------#492
+
+    #   CREATE TABLE    logs_partition (ts BIGINT, line STRING)
+                        PARTITIONED BY (dt STRING, country STRING);
+                        
+                        
+        +   Note : When no delimiter is specified, Hive expects CTRL-A as delimiter
+        +   Partition Columns 
+            -   'dt' & 'country' are partition columns #493 
+        
+Load data WITHOUT specifying partition
+---------------------------------------------------------
+        
+   #    LOAD DATA LOCAL INPATH  'src/main/input/file1'
+                                INTO TABLE logs_partition;                        
+
+        +   FAILED: SemanticException [Error 10062]: Need to specify partition columns 
+            because the destination table is partitioned
+        
+
+LOAD data by specifying partition
+---------------------------------------------------------
+
+    #    LOAD DATA LOCAL INPATH 'src/main/input/file1'
+                                INTO TABLE logs_partition
+                                PARTITION (dt='2001-01-01', country='GB');
+                                                        
+        +   !hdfs dfs -lsr /user/hive/warehouse/logs_partition;
+        
+            -   drwxr-xr-x   - mountain supergroup          0 2015-06-28 15:26 /user/hive/warehouse/logs_partition/dt=2001-01-01
+            -   drwxr-xr-x   - mountain supergroup          0 2015-06-28 15:26 /user/hive/warehouse/logs_partition/dt=2001-01-01/country=GB
+            -   -rw-r--r--   1 mountain supergroup         12 2015-06-28 15:26 /user/hive/warehouse/logs_partition/dt=2001-01-01/country=GB/file1
+     
+    #   SHOW PARTITIONS logs_partition; --493
+    
+        +   dt=2001-01-01/country=GB
+    

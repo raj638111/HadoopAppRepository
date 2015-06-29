@@ -1,0 +1,21 @@
+
+Sampling non-bucked table
+--------------------------------------------------#495
+
+    #   Does a complete scan for getting the sample(Inefficient)
+    
+    #   SELECT  * from records
+                TABLESAMPLE(BUCKET 1 OUT OF  2 on rand()); 
+
+
+
+Sampling of Bucked table
+--------------------------------------------------#495
+
+    #   Here Bucketing is decided based on 'temperature'
+    
+    #   SELECT  * FROM records_bucketed
+                TABLESAMPLE(BUCKET 1 OUT OF 4 ON temperature);
+    
+    #   SELECT  * FROM records_bucketed
+                TABLESAMPLE(BUCKET 1 OUT OF 2 ON temperature);

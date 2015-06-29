@@ -1,0 +1,55 @@
+
+Advantage
+----------------------------------------------------------------------
+
+    #   Mapside Join 
+        +   For 2 tables bucketed on the same join-column, Mapside Join  #493, #494
+            will be used
+        +   A sorted bucket makes for much more efficient Mapside Join(Merge Sort) #494
+        
+    #   Sampling
+    
+        +   Queries can be tested on sample of data         
+    
+Create
+----------------------------------------------------------------------
+
+    #   CREATE TABLE    records_bucketed (year STRING, temperature INT, quality INT) 
+                        CLUSTERED BY (temperature) SORTED BY (temperature ASC) INTO 4 BUCKETS
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '\t'
+      
+Load (without bucketing enforced)
+----------------------------------------------------------------------
+    
+    #   INSERT OVERWRITE TABLE  records_bucketed        --494
+                                SELECT * from records;
+                                
+        +   !hdfs dfs -ls /user/hive/warehouse/records_bucketed;
+            
+            -   -rw-r--r--   1 mountain supergroup        102 2015-06-28 15:59 /user/hive/warehouse/records_bucketed/000000_0
+            -   **Note here... no bucketing is done
+            
+        +   !hdfs dfs -rm /user/hive/warehouse/records_bucketed/*
+
+
+Load (WITH bucketing enforced)
+----------------------------------------------------------------------
+  
+    #   SET hive.enforce.bucketing=true;
+    
+    #   INSERT OVERWRITE TABLE  records_bucketed        --494
+                                SELECT * from records;
+                                
+        +   !hdfs dfs -ls /user/hive/warehouse/records_bucketed;                                
+            -rw-r--r--   1 mountain supergroup         18 2015-06-28 16:04 /user/hive/warehouse/records_bucketed/000000_0
+            -rw-r--r--   1 mountain supergroup         22 2015-06-28 16:04 /user/hive/warehouse/records_bucketed/000001_0
+            -rw-r--r--   1 mountain supergroup         40 2015-06-28 16:04 /user/hive/warehouse/records_bucketed/000002_0
+            -rw-r--r--   1 mountain supergroup         22 2015-06-28 16:04 /user/hive/warehouse/records_bucketed/000003_0
+            
+            ***(Now we have four buckets, corresponging to 4 Reducers )                                
+    
+    
+    
+    
+    

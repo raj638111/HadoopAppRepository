@@ -1,0 +1,23 @@
+Metastore
+----------------------------------------------------------
+
+	# Meta data such as Table Schema is stored in Metastore #472
+	# Can be either embedded derby database (or) MySQL
+	# Meta data is never stored in HDFS #489
+	
+	# 'metastore_db'
+		+ For derby, Meta files are stored in the directory 'metastore_db' #473
+
+    # Read more of Metastore service(daemon) & properties here...#482, ##483
+    
+Warehouse
+----------------------------------------------------------
+		
+   	# For internal tables, Data resides in warehouse(/user/hive/warehouse) #473
+   		
+	# 'default' database
+		+ By Default, all the tables created are stored in 'default' database
+		+ 'default' database maps to /user/hive/warehouse
+		
+    
+	

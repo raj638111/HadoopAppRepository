@@ -1,0 +1,39 @@
+Note
+----------------------------------------------------------
+            
+    # HDFS do not provide in place inserts, updates & deletes. 
+      So changes are stored in Delta files #483
+      
+    # Metastore daemon periodically merges Delta files into Base table #483
+    
+    # ***These features will only work for tables that has Transaction enabled #483
+                        
+Insert
+----------------------------------------------------------
+
+    # Adding bulk rows to existing table
+    
+        + Use INSERT INTO ... #483
+        + This adds new data file to existing table
+        + ... Have not tried this yet
+        
+    # Fine grained Insert
+    
+        + INSERT INTO TABLE... VALUES #483
+        + ..Have not tried this yet
+
+Update & Delete
+----------------------------------------------------------
+        
+    # UPDATE & DELETE are possible #483
+    
+        + update records set year="1960" where year="1949";
+            -   Not able to update, getting this error..
+            -   SemanticException [Error 10294]: Attempt to do update or delete 
+                using transaction manager that does not support these operations           
+        
+        + delete from records where year='1949';    
+            -   Not able to delete, getting this error..
+            -   SemanticException [Error 10294]: Attempt to do update or delete 
+                using transaction manager that does not support these operations
+                

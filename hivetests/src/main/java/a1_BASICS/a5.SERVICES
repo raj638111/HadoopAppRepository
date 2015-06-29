@@ -1,0 +1,28 @@
+
+Services
+------------------------------------------------------------
+
+    # A service can be selected using #478
+        hive --service <service name>
+        
+    # Available Services
+        cli             +   Is the default service
+        hiveserver2     +   Runs Hive as a Server making it accessible
+                            to different Clients #478, #479
+        beeline
+        hwi
+        jar
+        metastore
+        
+Clients
+------------------------------------------------------------
+      
+    #   Following are the clients available when
+        hive is run as a Server (hive --service hiveserver2) #479
+        
+        + Thrift Client
+        + JDBC Driver
+        + ODBC Driver
+        
+   #    Check this nice Diagram #480     
+               

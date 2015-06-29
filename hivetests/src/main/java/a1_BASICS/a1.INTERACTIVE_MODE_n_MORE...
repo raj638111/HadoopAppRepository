@@ -1,0 +1,23 @@
+Non interactive mode
+---------------------------------------------------------- #473
+
+	hive -f script.q		
+	hive -e 'select * from dummy'
+	hive -e "CREATE TABLE dummy (value STRING); 
+			LOAD DATA LOCAL INPATH '/tmp/dummy.txt' 
+			OVERWRITE INTO TABLE dummy"
+	
+Suppressing Verbose
+---------------------------------------------------------- #474
+	
+	# Use -S Option
+	
+	hive -S -e 'SELECT * FROM dummy'
+	
+Executing Shell Commands in Interactive mode
+---------------------------------------------------------- #474
+	
+	# Use !
+	
+	!hdfs dfs -ls
+	!ls

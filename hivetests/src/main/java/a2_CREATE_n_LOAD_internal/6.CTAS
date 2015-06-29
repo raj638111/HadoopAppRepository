@@ -1,0 +1,17 @@
+
+CTAS
+-----------------------------------------------#501
+
+    Create Table As Select
+
+Example
+-----------------------------------------------#501
+
+    CREATE TABLE    logs_ctas
+                    AS
+                    SELECT * from logs_partition;
+
+    SHOW PARTITIONS logs_ctas;
+    
+        -   FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Table logs_ctas is not a partitioned table                    
+        -   **NOTE : logs_ctas table is not created as Partitioned table                     

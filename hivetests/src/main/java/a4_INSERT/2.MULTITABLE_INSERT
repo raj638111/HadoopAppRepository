@@ -1,0 +1,21 @@
+
+Info
+-------------------------------------------------------
+
+    # Can be used to import data from one table into multiple tables --501
+
+
+Example
+-------------------------------------------------------
+    
+    FROM    records2
+            INSERT OVERWRITE TABLE  stations_by_year
+                                    SELECT year, COUNT(DISTINCT station)
+                                    GROUP BY year
+            INSERT OVERWRITE TABLE  records_by_year
+                                    SELECT year, COUNT(1)
+                                    GROUP BY year
+            INSERT OVERWRITE TABLE  good_records_by_year
+                                    SELECT year, COUNT(1)
+                                    WHERE temperature != 9999 AND quality IN (0, 1, 4, 5, 9)
+                                    GROUP BY year;  

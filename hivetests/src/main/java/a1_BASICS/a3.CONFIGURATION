@@ -1,0 +1,46 @@
+
+Alternate Configuration
+--------------------------------------------------------------
+    
+    hive --config /Users/tom/dev/hive-conf  #475
+    
+        (or)
+    
+    HIVE_CONF_DIR 
+    
+        (or)
+    
+    hive    -hiveconf fs.defaultFS=hdfs://localhost     \
+            -hiveconf mapreduce.framework.name=yarn     \
+            -hiveconf yarn.resourcemanager.address=localhost:8032
+            
+        (or)
+    
+    SET hive.enforce.bucketing=true;
+        - Set a property
+        
+    SET hive.enforce.bucketing;
+        - Display a property
+        
+    SET -v
+        - Display all properties including Hadoop default
+        
+Execution Engines           
+-------------------------------------------------------------- #477
+
+    #   Can be selected using
+           SET hive.execution.engine=tez;
+           
+    #   **Very useful to test a Query performance using different
+        execution engines(MapReduce, Tez or Spark)
+
+Permissions
+-------------------------------------------------------------- #476
+
+    #   This provides permission for user in same group
+    
+        hadoop fs -mkdir /tmp
+        hadoop fs -chmod a+w /tmp
+        hadoop fs -mkdir -p /user/hive/warehouse
+        hadoop fs -chmod a+w /user/hive/warehouse    
+         
