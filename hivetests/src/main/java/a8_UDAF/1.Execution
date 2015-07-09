@@ -1,0 +1,32 @@
+
+Find the Maximum Value (Partial result & final result are same)
+-------------------------------------------------------------------
+
+    #   hdfs dfs -copyFromLocal ./target/hivetests-0.0.1-SNAPSHOT.jar alljars
+    
+
+    #   CREATE FUNCTION     --512 (Gets persisted in Metastore)
+                        max AS 'a8_UDAF.Maximum'
+                        USING JAR  
+                        'hdfs://localhost:9000/user/mountain/alljars/hivetests-0.0.1-SNAPSHOT.jar';
+                        
+    #   SELECT max(temperature) from records;
+    
+    
+    #   ***Check this cool diagram to understand more   --516
+        about iterate(), terminatePartial() & merge()  
+
+
+
+Find Mean (Partial result & final result are different) 
+-------------------------------------------------------------------517
+
+
+     CREATE FUNCTION     --512 (Gets persisted in Metastore)
+                        mean AS 'a8_UDAF.Mean'
+                        USING JAR  
+                        'hdfs://localhost:9000/user/mountain/alljars/hivetests-0.0.1-SNAPSHOT.jar';
+
+
+    select mean(temperature) from records;
+                            

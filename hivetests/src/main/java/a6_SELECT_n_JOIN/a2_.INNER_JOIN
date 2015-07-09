@@ -1,0 +1,72 @@
+Input
+-------------------------------------------------
+
+    sales
+    -----
+        Joe 2
+        Hank 4
+        Ali 0
+        Eve 3
+        Hank 2
+    
+    things
+    ------
+        2 Tie
+        4 Coat
+        3 Hat
+        1 Scarf
+
+Inner Join Example
+-------------------------------------------------
+
+    #   SELECT  sales.*, things.*   --505
+                FROM sales JOIN things ON (sales.id = things.id);
+            
+            (or)
+            
+    #   SELECT  sales.*, things.*   --506
+                FROM sales, things
+                WHERE sales.id = things.id;            
+            
+    #   NOTE : Hive only supports equijoin (ie sales.id = things.id)
+    
+Find no of MapReduce jobs for the join
+-------------------------------------------------
+
+    #   EXPLAIN
+                    SELECT sales.*, things.*
+                    FROM sales JOIN things ON (sales.id = things.id);
+         
+
+Miscellaneous
+-------------------------------------------------
+
+      CREATE TABLE  staging (name1 STRING,  name2 STRING) 
+                    ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+                    WITH SERDEPROPERTIES (
+                    "input.regex" = "(\\w*)\\s*(\\w*).*"
+        );
+        
+      LOAD DATA LOCAL INPATH  'src/main/input/sales.txt' 
+                            OVERWRITE INTO TABLE staging;
+
+
+      CREATE TABLE      sales (name STRING, id INT) 
+                    ROW FORMAT DELIMITED
+                    FIELDS TERMINATED BY ' ';
+    
+    
+    add jar /home/mountain/hv/lib/hive-contrib-1.0.0.jar
+    http://www.techbuzz.in/caused-by-java-lang-classnotfoundexception-org-apache-hadoop-hive-contrib-serde2-regexserde.php
+    
+    insert overwrite table sales select * from staging;
+
+     LOAD DATA LOCAL INPATH  'src/main/input/things.txt' 
+                            OVERWRITE INTO TABLE staging;
+                            
+      CREATE TABLE      things (id INT, name STRING) 
+                    ROW FORMAT DELIMITED
+                    FIELDS TERMINATED BY ' ';
+
+    insert overwrite table things select * from staging;
+                 

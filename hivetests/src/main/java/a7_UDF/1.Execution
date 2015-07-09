@@ -1,0 +1,43 @@
+
+
+Strip Leading & Trailing empty spaces
+---------------------------------------------------------
+
+    #   hdfs dfs -mkdir alljars 
+    
+    #   hdfs dfs -copyFromLocal ./target/hivetests-0.0.1-SNAPSHOT.jar alljars
+    
+        
+    #   CREATE FUNCTION     --512 (Gets persisted in Metastore)
+                        strip AS 'a7_UDF.Strip'
+                        USING JAR  
+                        'hdfs://localhost:9000/user/mountain/alljars/hivetests-0.0.1-SNAPSHOT.jar';
+                       
+                       
+    #   CREATE TABLE    piped_table (year STRING, temperature INT, quality INT) 
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '|';
+    
+    #   LOAD DATA LOCAL INPATH  'src/main/input/piped_data.txt'   --Load from local file
+                                OVERWRITE INTO TABLE piped_table;
+                                
+                                
+    #   select strip(year), temperature, quality from piped_table; --512
+    
+    
+    #   DROP FUNCTION strip; --Remove function from Metastore --513                                
+                                
+                               
+Ways to configure the function
+---------------------------------------------------------
+
+    #   Only for Session    --513
+    
+        +   ADD JAR /path/to/hive-examples.jar;
+        +   CREATE TEMPORARY FUNCTION strip AS 'com.hadoopbook.hive.Strip';
+        
+    #   Setting up Class Path(So that no need to specify Jar every time)
+    
+        +   hive --auxpath /path/to/hive-examples.jar
+        +   more...#513
+                               

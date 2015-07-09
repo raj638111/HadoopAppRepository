@@ -1,0 +1,5 @@
+
+
+    http://www.techbuzz.in/caused-by-java-lang-classnotfoundexception-org-apache-hadoop-hive-contrib-serde2-regexserde.php
+        add jar /home/mountain/hv/lib/hive-contrib-1.0.0.jar
+    

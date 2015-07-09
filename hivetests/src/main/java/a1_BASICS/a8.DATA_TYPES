@@ -25,5 +25,10 @@ Primitive types
 Complex types
 -----------------------------------------------#488
     
-    # ARRAY, MAP, STRUCT, UNION ##486
+    #   ARRAY, MAP, STRUCT, UNION ##486
+
+Type Conversion
+-----------------------------------------------#488
  
+    #   Can be done using CAST operator
+        CAST('1' AS INT)

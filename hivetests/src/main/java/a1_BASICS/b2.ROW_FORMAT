@@ -1,0 +1,11 @@
+
+
+    #   ROW FORMAT DELIMITER
+    
+    #   ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
+                    WITH SERDEPROPERTIES (
+                    "input.regex" = "(\\w*)\\s*(\\w*).*"
+                    
+        +   Each Capture group will be mapped to a field in Table
+        +   NOTE 
+            -   When using RegexSerde, all fields in the table should be string                     

@@ -1,2 +1,4 @@
 
+
+    Explicit conversion can be done using CAST('1' as INT) #489
     Read more...#489
