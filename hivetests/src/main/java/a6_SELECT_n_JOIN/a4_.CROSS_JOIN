@@ -1,0 +1,5 @@
+
+
+    #   Provides cartesian product of 2 tables (m * n)
+    
+    #   http://stackoverflow.com/questions/3228871/sql-server-what-is-the-difference-between-cross-join-and-full-outer-join

@@ -10,7 +10,7 @@ SORT & DISTRIBUTED BY
     #  SORT provides Partial Sort
     #  DISTRIBUTED BY can be used to decide on the Partitioner
     
-    #   FROM records
+        FROM records
                         SELECT year, temperature
                         DISTRIBUTE BY year
                         SORT BY year ASC, temperature DESC;

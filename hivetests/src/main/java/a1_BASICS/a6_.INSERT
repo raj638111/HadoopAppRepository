@@ -1,0 +1,46 @@
+Note
+----------------------------------------------------------
+            
+    # HDFS do not provide in place inserts, updates & deletes. 
+      So changes are stored in Delta files #483
+      
+    # Metastore daemon periodically merges Delta files into Base table #483
+    
+    # ***These features will only work for tables that has Transaction enabled #483
+                        
+Bulk Insert
+----------------------------------------------------------
+
+    # Adding bulk rows to existing table
+    
+        + Use INSERT INTO ... #483
+        + This adds new data file to existing table
+        
+    Example
+    ---------------
+
+    select count(*) from records;
+        10
+
+    !hdfs dfs -ls /user/hive/warehouse/records; 
+        -rw-r--r--   1 mountain supergroup         51 2015-06-27 19:27 /user/hive/warehouse/records/sample.txt
+        -rw-r--r--   1 mountain supergroup         51 2015-06-28 14:01 /user/hive/warehouse/records/secondfile
+
+    INSERT into table records SELECT * from records;
+    
+    !hdfs dfs -ls /user/hive/warehouse/records;
+
+        -rw-r--r--   1 mountain supergroup        102 2015-07-09 21:08 /user/hive/warehouse/records/000000_0
+        -rw-r--r--   1 mountain supergroup         51 2015-06-27 19:27 /user/hive/warehouse/records/sample.txt
+        -rw-r--r--   1 mountain supergroup         51 2015-06-28 14:01 /user/hive/warehouse/records/secondfile
+   
+    select count(*) from records;
+        20
+    
+
+Fine grained insert
+----------------------------------------------------------
+                
+    #   INSERT INTO TABLE... VALUES #483
+    #    ..Have not tried this yet
+

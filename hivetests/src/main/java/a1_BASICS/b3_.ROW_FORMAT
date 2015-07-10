@@ -1,6 +1,6 @@
 
 
-    #   ROW FORMAT DELIMITER
+    #   ROW FORMAT DELIMITED
     
     #   ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'
                     WITH SERDEPROPERTIES (

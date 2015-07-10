@@ -11,7 +11,10 @@ Operators
 Functions
 ---------------------------------------------------------#488
 
-    concat()
-    SHOW FUNCTIONS
-    DESCRIBE FUNCTION length
+    #   concat(), trim()
+        +   Example
+            -   select trim(year) from records;
+            
+    #   SHOW FUNCTIONS
+    #   DESCRIBE FUNCTION length
     

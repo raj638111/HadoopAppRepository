@@ -23,22 +23,25 @@ WITH LOCATION specified
 WITHOUT LOCATION specified
 ----------------------------------------------------------------------------
   
+    **  File will be moved into /user/hive/warehouse
+    
     #   hdfs dfs -copyFromLocal 'src/main/input/sample.txt'  /user/mountain/secondfile
 
     #   CREATE EXTERNAL TABLE   records_external (year STRING, temperature INT, quality INT) --474
                                 ROW FORMAT DELIMITED
                                 FIELDS TERMINATED BY '\t';
+                                
     #   LOAD DATA INPATH '/user/mountain/secondfile' INTO TABLE records_external;
 
         +   !hdfs dfs -ls /user/hive/warehouse/records_external;
             -   -rw-r--r--   1 mountain supergroup         51 2015-06-28 14:43 /user/hive/warehouse/records_external/secondfile
             
         +   !hdfs dfs -ls /user/mountain;
-            -   **File is no longer available in /user/mountain 
-                and is moved to /user/hive/warehouse/records_external
+            -   **File is no longer available in /user/mountain and is moved 
+                  to /user/hive/warehouse/records_external
     
     #   drop table records_external; 
-        +   Schema is Delete & 'show tables' no longer has records_external table
+        +   Schema is Deleted & 'show tables' no longer has records_external table
         +   !hdfs dfs -ls /user/hive/warehouse/records_external;
             -   **Table is not deleted & is still available
                             

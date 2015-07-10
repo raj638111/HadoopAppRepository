@@ -27,8 +27,3 @@ Complex types
     
     #   ARRAY, MAP, STRUCT, UNION ##486
 
-Type Conversion
------------------------------------------------#488
- 
-    #   Can be done using CAST operator
-        CAST('1' AS INT)
