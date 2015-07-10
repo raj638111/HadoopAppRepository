@@ -1,0 +1,8 @@
+
+
+Find no of MapReduce jobs for the join
+-------------------------------------------------
+
+    #   EXPLAIN
+                    SELECT sales.*, things.*
+                    FROM sales JOIN things ON (sales.id = things.id);

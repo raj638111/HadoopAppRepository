@@ -8,10 +8,9 @@ import org.apache.hadoop.io.Text;
  * 	Strip Leading & Trailing empty spaces
  * 
  * 
- 	CREATE FUNCTION    							 --512 (Gets persisted in Metastore)
-                        strip AS 'a7_UDF.Strip'
+ 	CREATE FUNCTION		strip AS 'a7_UDF.Strip'		 --512 (Gets persisted in Metastore)
                         USING JAR  
-                        'hdfs://localhost:9000/user/mountain/alljars/hivetests-0.0.1-SNAPSHOT.jar';
+                       	'hdfs://localhost:9000/user/mountain/alljars/hivetests-0.0.1-SNAPSHOT.jar';
         
  */
 public class Strip extends UDF {

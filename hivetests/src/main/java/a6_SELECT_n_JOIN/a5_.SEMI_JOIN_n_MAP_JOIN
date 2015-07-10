@@ -22,10 +22,15 @@ Map Join
 
     #   Can be used when one table is small enough 
         to fit in Memory
+        
+    #   Can also be used when the tables are bucketed        
 
     #   SET hive.optimize.bucketmapjoin=true;   
     
     #   SELECT  sales.*, things.*
                 FROM sales JOIN things ON (sales.id = things.id);
+                
+    #   **Will not work for RIGHT OUTER JOIN &
+                            FULL OUTER JOIN 
             
     

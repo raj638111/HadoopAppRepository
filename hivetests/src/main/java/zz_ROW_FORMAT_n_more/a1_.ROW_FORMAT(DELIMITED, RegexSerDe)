@@ -20,5 +20,8 @@ Custom Row format(RegexSerDe)
                         
                     
     #   LOAD DATA LOCAL INPATH "src/main/input/stations-fixed-width.txt"
-                        INTO TABLE stations;
+                        INTO TABLE stations; 
+                        
+    #   Note
+        +   When using RegexSerDe, all the fields in the table should be STRING                       
         
