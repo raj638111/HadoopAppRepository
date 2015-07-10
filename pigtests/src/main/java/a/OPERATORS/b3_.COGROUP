@@ -2,9 +2,14 @@
 Info
 --------------------------------------------- #461
 
-	# 	JOIN produces a set of Tuples whereas COGROUP 
-		produces nested set of tuples #461
-	#	Each Tuple in the Set is a Key followed by Bags of Tuples
+	# 	JOIN produces a flat Tuple for each Row whereas COGROUP 
+		produces a Tuple that contains, #461
+		+ key
+		+ Bag 1 ( Contain Left relation Data )
+		+ Bag 2 ( Contain right relation data ) 
+
+    #   **Interesting
+        + COGROUP INNERT (+) FLATTEN => INNER JOIN
 		
 	A = LOAD 'src/main/resources/input/join_master.txt';
 	B = LOAD 'src/main/resources/input/join_data.txt';
@@ -36,7 +41,7 @@ Inner Join
 	
 	I = FOREACH G GENERATE FLATTEN($2)
 	
-		(Hank,2)
+		(Hank,2)A bag can contain multiple Tuples
 		(Joe,2)
 		
 	J = FOREACH G GENERATE FLATTEN($1), FLATTEN($2);

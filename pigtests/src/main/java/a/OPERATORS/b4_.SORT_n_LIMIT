@@ -8,8 +8,8 @@ Info
 		+ 	LIMIT
 			-	When not sorted LIMIT usually selects any N
 				tuples from the relation
-			-	***Recommended to use LIMIT as it can improve 
-				performance #466 
+			-	**Recommended to use LIMIT as it can improve 
+				  performance #466 
 
 Example
 -------------------------------------------------- #465

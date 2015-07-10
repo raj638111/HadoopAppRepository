@@ -9,6 +9,7 @@ Info
 				Is useful to count the no of tuples in the Group #464
 	# 'ANY' :	Is used to group the tuples in a relation randomly
 	
+	
 Example 1 
 -------------------------------------------- #429
 
@@ -33,12 +34,12 @@ Example 2 : (ALL)
 	(all,{(Eve,apple),(Joe,banana),(Ali,apple),(Joe,cherry)})
 				
 		
-Note
+Bag
 --------------------------------------------
 
-	Bag 
+        A Bag is an Unordered collection of Tuples
 		In (1) {..} is a Bag #429
 		The Bag in (1) has 2 Tuples
-		A Bag is an Unordered collection of Tuples
+		
 		
 		

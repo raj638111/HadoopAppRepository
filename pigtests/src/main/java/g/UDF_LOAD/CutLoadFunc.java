@@ -27,7 +27,7 @@ import org.apache.pig.data.TupleFactory;
  * 				Can be used to provide type(Schema) for the fields #456
  * 
  	REGISTER target/pigtests-0.0.1-SNAPSHOT.jar;
- 	records = LOAD 'src/main/resources/input/cut_load.txt'
+ 	records = LOAD 'src/main/resources/input/cut_load.txt'	
 			USING g.UDF_LOAD.CutLoadFunc('1-4,5-6,7-7')
 			AS (year:int, temperature:int, quality:int);
 			   

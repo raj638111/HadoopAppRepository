@@ -1,0 +1,14 @@
+
+Info
+--------------------------------------------------
+
+    #   Produces cartesian product of two relations #462
+
+Example
+--------------------------------------------------
+    
+    
+    A = LOAD 'src/main/resources/input/join_master.txt';
+    B = LOAD 'src/main/resources/input/join_data.txt';
+        
+    C = CROSS A, B; 

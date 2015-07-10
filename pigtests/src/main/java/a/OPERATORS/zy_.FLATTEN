@@ -1,5 +1,21 @@
 
+Info
+------------------------------------------------------------
+
 	# 	If you have a Bag as a field, flattening it will convert 
 		each Tuple inside the bag into a Record
 	# 	Check COGROUP for example
+
+Example
+------------------------------------------------------------
+
+    G = COGROUP A BY $0 INNER, B BY $1 INNER;
+    
+        (2,{(2,Tie)},{(Hank,2),(Joe,2)})
+        ...
+    
+    H = FOREACH G GENERATE FLATTEN($1) --Just checking FLATTEN
+    
+        (2,Tie)
+        ...
 	

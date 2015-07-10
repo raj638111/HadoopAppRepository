@@ -6,6 +6,7 @@
 	  	
 	# set
 		+ To Turn on/off debugging #437, ##436
+		+ Can be used display all properties
 	
 	# exec & run
 		+ Is used to run the Pig script #437

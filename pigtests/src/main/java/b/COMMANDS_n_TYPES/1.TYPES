@@ -6,5 +6,3 @@
 		+ 	TOTUPLE, TOBAG & TOMAP can be used to convert an expression 
 			into tuple, bag or map
 			
-	# Relations & bags
-		+ 	Are quite similar ...more here #440

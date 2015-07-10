@@ -1,0 +1,41 @@
+
+MAX(...)
+-----------------------------------------------------------------
+
+    #   Calculate Maximum value of entries in a Bag #446
+
+    Example
+    --------------
+
+        A =     LOAD 'src/main/resources/input/tab_sample.txt'
+                        AS (year:chararray, temperature:int, quality:int);
+        B = GROUP A all;    
+        
+        describe B;
+            B: {group: chararray,A: {(year: chararray,temperature: int,quality: int)}}
+        
+        dump B;  
+            (all,{(1929,80,3),(1949,78,1),(1949,111,1),(1950,-11,1),(1950,22,1),(1950,0,1)})
+        
+        C = FOREACH B generate MAX(A.year) as val;
+
+        
+SUM(...)
+-----------------------------------------------------------------
+
+    #   Calculates the sum of the values of entries in a Bag #446
+
+    Example
+    --------------
+
+        A =     LOAD 'src/main/resources/input/tab_sample.txt'
+                        AS (year:chararray, temperature:int, quality:int);
+        B = GROUP A all;    
+        
+        describe B;
+            B: {group: chararray,A: {(year: chararray,temperature: int,quality: int)}}
+        
+        dump B;  
+            (all,{(1929,80,3),(1949,78,1),(1949,111,1),(1950,-11,1),(1950,22,1),(1950,0,1)})
+    
+         D = foreach B generate SUM(A.temperature) as val;        

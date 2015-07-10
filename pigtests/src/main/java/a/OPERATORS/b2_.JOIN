@@ -16,8 +16,11 @@ Inner Join (For Large Datasets)
 Inner Join (For Small Datasets)
 ------------------------------------------ #460
 
-	** 	Use 'replicated' for the small dataset. This dataset
-		will become part of Distributed Cache
+	#  **Use 'replicated' for the small dataset. This dataset
+		 will become part of Distributed Cache
+    
+    #   Also called 'Fragmented replicate join'       		 
+		
 		
 	C = JOIN A BY $0, B BY $1 USING 'replicated';
 
@@ -26,7 +29,6 @@ Outer Join
 ------------------------------------------ #460
 	 
 	C = JOIN A BY $0 LEFT OUTER, B BY $1;
-	
 	
 
 More

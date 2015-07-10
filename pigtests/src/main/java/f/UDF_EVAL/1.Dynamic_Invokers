@@ -1,6 +1,6 @@
 
-	# Can be used call the methods available in existing Java Library #453
-	# Is less efficient as it used Java Reflection
+	# Can be used to call the methods available in existing Java Libraries #453
+	# Is less efficient as it uses Java Reflection
 	
 	# Available Invokers
 		+ InvokeForString
