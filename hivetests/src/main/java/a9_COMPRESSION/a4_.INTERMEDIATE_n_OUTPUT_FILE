@@ -1,0 +1,16 @@
+
+
+    #   Mapper Compression              @2861
+    
+        +   Enable/Disable compression
+            -   SET hive.exec.compress.intermediate=true
+        +   Choose codec
+            -   SET hive.intermediate.compression.codec=org.apache.hadoop.io.compress.SnappyCodec
+        +   LZ4 or Snappy
+        
+    #   Reducer Compression
+    
+        +   Enable/Disable Compression
+            -   SET hive.exec.compress.output=true
+        +   Choose Codec
+            -   SET mapred.output.compression.codec = org.apache.hadoop.io.compress.SnappyCodec            

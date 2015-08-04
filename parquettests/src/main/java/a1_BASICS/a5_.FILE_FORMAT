@@ -1,0 +1,46 @@
+
+File Format
+-------------------------------------------------------#370
+
+    #   Header
+        +   Magic Number (PAR1)     - 4 Byte magic number (Used to identify file as Parquet)
+        
+    #   1 - N Blocks                -
+    
+    #   Footer
+        +   Format Version          -
+        +   Schema                  -
+        +   Extra Key-value pairs   -
+        +   Metadata for all blocks -
+        +   Length                  - 4 Byte field containing length of footer metadata
+        +   Magic Number (PAR1)     - 
+            
+Block Format
+-------------------------------------------------------#371
+
+    #   Block           =   Column Chunk + Column Chunk + Column Chunk 
+                            (Called as Row Group)
+                            
+        +   Row Group : Contains column data(Column Chunk) for a set of Rows
+
+    #   Column Chunk    =   Page + Page + Page + Page        
+        +   Each Page contain value for the same column
+        
+        
+    Note
+    ----------
+    #   Page
+        +   Can be encoded
+            -   Plain Encoding
+            -   Delta Encoding
+            -   run-length Encoding
+            -   Dictionary Encoding
+        +   Can be compressed
+            -   Snappy, gzip & LZO
+            
+    #   Small Page size
+        +   Advantage       Retrieving arbitary row for a Column is faster            
+        +   Disadvantage    Incurs high storage cost(to store metadata)
+    
+    
+    

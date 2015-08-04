@@ -1,3 +1,17 @@
+
+Map Reduce Anatomy
+--------------------------------------------
+
+    Map Phase
+    -------------
+    
+        Data -> Partitioner -> Sorting -> Combiner -> Disk
+          
+    Reducer Phase
+    ---------------
+
+        
+
 --------------------------------------------	
 Data-set format
 --------------------------

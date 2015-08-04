@@ -1,0 +1,35 @@
+
+#370
+
+Info
+------------------------------------------------------------------------------------------
+
+    Compression     Splittable              Codec
+    ------------    ----------------        -------------#100
+    .deflate        N                       -(Is the default)          
+    .gz             N                       -
+    .bz2            Y                       BZip2Codec
+    .lzo            N                       -   (Indexer tool can be used to make it splittable)
+    .lz4            N                       -
+    .snappy         N                       -
+    
+MapReduce Compression
+------------------------------------------------------------------------------------------
+    
+    #   Reducer output compression   #107
+    
+        +   FileOutputFormat.setCompressOutput(job, true);
+        +   FileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
+    
+    #   Mappter output compression
+    
+        +   mapreduce.map.output.compress
+        +   mapreduce.map.output.compress.codec
+
+Hive Compression
+------------------------------------------------------------------------------------------
+    
+               
+        
+        
+            

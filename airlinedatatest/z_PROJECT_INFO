@@ -1,0 +1,71 @@
+    
+    
+    + The dataset have a  US domestic flight arrival / departure information for the past 10 years
+    + Each file in the dataset corresponds to a single year
+    + Each record in a file corresponds to a particular flight
+        - Example : american airlines
+        - We will have information like
+                        origin airport code
+                        Destn airport code
+                        Arrival Time
+                        Departure Time
+        - LRE 
+
+    ---------------------------------------------------------------------------------------------
+
+    + Partial sorting (is the basic sorting we can do in map reduce)
+
+        - Task? 
+            * Sort the dataset by Destination Airport code
+        - How achived?
+            * By using Airport Code as Key  
+
+        - What next?
+            * Would like to have the dataset totally sorted
+
+    + Total Order Sorting
+
+        - Task?
+            * Sort the dataset by Destination Airport but should be total order sorted
+        - How achieved?
+            * By using Custom Partitioner
+
+        - What next?
+            * Would like to have secondary sorting. the data set sorted by (Airport + Arrival Time)
+            
+    + Secondary sorting
+        - Task?
+            * Sort the dataset by using both (Airport + Arrival Time)
+        - How achieved?
+            * Using custom key      (Airport + Arrival Time)
+            * Custom Partitioner    (Airport)
+            * Sorting Comparator    (Airport + Arrival Time)
+            * Grouping Comparator   (Airport)
+            
+    ---------------------------------------------------------------------------------------------
+
+    
+    + Reducer side join (Joing using Secondary Sort)
+        - Task
+            * Join the Carrier Code in Data file with carrier description in Master data file
+        - How achived?
+            * 1 Mapper for Data file
+            * Another Mapper for Master data file
+            * Use secondary sorting to ensure that Master data (one with Carrier Description) arrives first
+
+            Custom Key(in both Mappers) (Carrier Code + Data Type)(0 - For master data)
+                                              (1 - Actual data set)
+
+    ---------------------------------------------------------------------------------------------
+    
+                                            
+    + Map side join (Using Distributed Cache)
+        - Task
+            * Update the original dataset with Aiport Description & Carrier Description
+        - How Acheived
+            * Input 1   Data set file(which is the input to Mapper)
+            * input 2   Airport Master(Added to Cache in Driver through job.addCacheFile())
+            * input 3   Carrier Master(Added to Cache in Driver through job.addCacheFile())     
+        - Note 
+            the key in context.write() is kept as null  
+            

@@ -1,0 +1,24 @@
+
+
+A Flat table Schema
+--------------------------------------------------------------#368
+
+    message WeatherRecord {
+        required int32 year;
+        required int32 temperature;
+        required binary stationId (UTF8);
+    }
+
+Nested & Repeating schema
+--------------------------------------------------------------#369
+
+    # A Schema example for LIST annotation
+    
+    message m {
+        required group a (LIST) {
+            repeated group list {
+                required int32 element;
+            }
+        }
+    }
+    

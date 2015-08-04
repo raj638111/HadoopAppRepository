@@ -26,7 +26,22 @@ import utils.keynval.CarrierKey;
 import utils.keynval.DelaysWritable;
 import utils.others.AirlineDataUtils;
 
+/*
+ * Task
+ * 		To join Carrier Code with Carrier Description
+ * 
+ * DRIVER
+ * 		Key					Carrier Code + Type Info (0 - Master data, 1 - Data Set)
+ * 		Partitioner			Carrier Code
+ * 		Sorting Comparator	Carrier Code + Type Info
+ * 		Grouping Comparator	Carrier Code
+ *
+ */
 public class JoinMRJob extends Configured implements Tool {
+	
+	/****************************************************
+	 * MAPPER for Fligt Data(Contains CARRIER CODE + other flight information)
+	 ****************************************************/
     public static class FlightDataMapper extends
             Mapper<LongWritable, Text, CarrierKey, Text> {
 
@@ -47,6 +62,9 @@ public class JoinMRJob extends Configured implements Tool {
         }
     }
 
+    /****************************************************
+     * MAPPER for Master Data(Contains CARRIER CODE + CARRIER DESCRIPTION)
+     ****************************************************/
     public static class CarrierMasterMapper extends
             Mapper<LongWritable, Text, CarrierKey, Text> {
 
@@ -67,6 +85,9 @@ public class JoinMRJob extends Configured implements Tool {
         }
     }
 
+    /****************************************************
+     * REDUCER : Ensure Master data arrive first using secondary sorting
+     ****************************************************/
     public static class JoinReducer extends
             Reducer<CarrierKey, Text, NullWritable, Text> {
         public void reduce(CarrierKey key, Iterable<Text> values,
@@ -88,6 +109,9 @@ public class JoinMRJob extends Configured implements Tool {
 
     }
 
+    /****************************************************
+     * PARTITIONER
+     ****************************************************/
     public static class CarrierCodeBasedPartitioner extends
             Partitioner<CarrierKey, Text> {
         @Override
@@ -96,18 +120,22 @@ public class JoinMRJob extends Configured implements Tool {
         }
     }
 
+    /****************************************************
+     * DRIVER
+     ****************************************************/
     public int run(String[] allArgs) throws Exception {
         String[] args = new GenericOptionsParser(getConf(), allArgs)
                 .getRemainingArgs();
         Job job = Job.getInstance(getConf());
         job.setJarByClass(JoinMRJob.class);
         job.setOutputFormatClass(TextOutputFormat.class);
+        
         MultipleInputs.addInputPath(job, new Path(args[0]),
                 TextInputFormat.class, FlightDataMapper.class);
         MultipleInputs.addInputPath(job, new Path(args[1]),
                 TextInputFormat.class, CarrierMasterMapper.class);
-        FileOutputFormat.setOutputPath(job, new Path(args[2]));
         
+        FileOutputFormat.setOutputPath(job, new Path(args[2]));
         
         job.setPartitionerClass(CarrierCodeBasedPartitioner.class);
         job.setSortComparatorClass(CarrierSortComparator.class);

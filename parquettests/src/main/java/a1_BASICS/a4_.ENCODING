@@ -1,0 +1,22 @@
+
+
+Nested Encoding
+------------------------------------------------------#370
+    
+    #   Nested Encoding is used by Parquet (for schemas with 
+        Nesting or repetition)
+                                
+        Example : A schema with nesting & repetition
+        --------------------------------------------                                 
+            message m {
+                required group a (MAP) {
+                        repeated group key_value {
+                            required binary key (UTF8);
+                            optional int32 value;
+                    }
+                }
+            }
+                            
+    #   Advantage
+        +   A Column can be read independently of the other      
+            

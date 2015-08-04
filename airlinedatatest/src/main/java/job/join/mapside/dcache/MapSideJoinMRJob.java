@@ -27,6 +27,18 @@ import org.apache.hadoop.util.ToolRunner;
 import utils.keynval.DelaysWritable;
 import utils.others.AirlineDataUtils;
 
+/*	
+ * To update the dataset with Carrier Description & Airport Description
+ * 
+ * Input File
+ * 		=>	Dataset (arg0)
+ * 		=>  Carrier Master	(Added to Map through job.addCacheFile())
+ * 		=> 	Airport Master	(Added to Map through job.addCacheFile())					
+ * 		
+ * 		*	Cache files are loaded into Map in each Mapper using the setup()
+ * 			method
+ * 
+ */
 @SuppressWarnings("deprecation")
 public class MapSideJoinMRJob extends Configured implements Tool {
 
@@ -35,6 +47,9 @@ public class MapSideJoinMRJob extends Configured implements Tool {
         private Map<String, String[]> airports = new HashMap<String, String[]>();
         private Map<String, String[]> carriers = new HashMap<String, String[]>();
 
+        /*
+         * Method to put Flight
+         */
         private void readAirports(URI uri) throws Exception {
             System.err.println("-> " + uri);
             List<String> lines = FileUtils.readLines(new File(uri));

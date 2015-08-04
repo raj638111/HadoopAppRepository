@@ -1,0 +1,35 @@
+
+Hive
+-----------------------------------------------------------------------------------------
+    
+    # Have created Managed Table & External Table
+    # Have created Managed Table with Partition & Bucket
+        * Have done sampling using bucketed tables
+    # Have created Views
+    # Have also done insert using   LOAD
+                    SINGLE TABLE INSERT
+                    MULTI TABLE INSERT using FROM
+    # Have done
+        INNER JOIN
+        OUTER JOIN
+        CROSS JOIN  
+        SEMI JOIN & MAP JOIN
+        SUB QUERIES
+
+    # Have done
+        UDF
+        UDAF(Aggregate Function)
+
+    # Have also created table with CTAS & CREATE LIKE
+    
+    # Have used row formats DELIMITED & SERDE(Using Capture Groups)
+
+    
+    How to find the associated data directory of external table?
+    
+    
+    
+select year, from_unixtime(unix_timestamp()) from records;
+http://stackoverflow.com/questions/23930426/inserting-system-timestamp-into-a-timestamp-field-in-hive-table    
+http://www.slideshare.net/alanfgates/hive-acidupdatesstratasjcfeb2015
+http://stackoverflow.com/questions/17327043/how-can-i-select-rows-with-most-recent-timestamp-for-each-key-value

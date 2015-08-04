@@ -1,0 +1,13 @@
+
+Info
+-----------------------------------------------------------@2875
+
+    #   SequenceFile
+        +   Multiple small files can be combined into a single SequenceFile
+        
+    #   HadoopArchive
+        +   Toolkit to pack small files  
+              
+    #   CombineFileInputFormat
+        +   Can be used to combine small files for map & reduce processing
+    

@@ -24,6 +24,16 @@ import utils.comparator.ArrivalFlightKeySortingComparator;
 import utils.keynval.ArrivalFlightKey;
 import utils.others.AirlineDataUtils;
 
+/*
+ * 		Task				=>	To sort records by Destination Airport
+ * 								But also need the records sorted by Datetime for each destination airport
+ * 	
+ * 		Key					=>	Destination Airport + Arrival Date Time	
+ * 		Sorting Comparator	=>	Destination Airport + Arrival Date Time
+ * 		Partitioner			=>	Destination Airport
+ * 		Grouping Comparator	=>	Destination Airport		
+ */
+
 public class AnalyzeConsecutiveArrivalDelaysMRJob extends Configured implements Tool {
 	
 	/******************************

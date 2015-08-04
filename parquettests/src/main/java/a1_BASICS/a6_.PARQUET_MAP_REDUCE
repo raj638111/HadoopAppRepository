@@ -1,0 +1,7 @@
+
+
+    #378
+    
+    GenericRecord record = new GenericData.Record(SCHEMA);
+    job.setOutputFormatClass(AvroParquetOutputFormat.class);
+    AvroParquetOutputFormat.setSchema(job, SCHEMA);        

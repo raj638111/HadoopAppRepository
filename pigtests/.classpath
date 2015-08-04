@@ -21,14 +21,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/mountain/.m2/repository/org/apache/pig/pig/0.14.0/pig-0.14.0.jar" sourcepath="/home/mountain/.m2/repository/org/apache/pig/pig/0.14.0/pig-0.14.0-sources.jar">
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="javadoc_location" value="jar:file:/home/mountain/.m2/repository/org/apache/pig/pig/0.14.0/pig-0.14.0-javadoc.jar!/"/>
-			<attribute name="maven.groupId" value="org.apache.pig"/>
-			<attribute name="maven.artifactId" value="pig"/>
-			<attribute name="maven.version" value="0.14.0"/>
-			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

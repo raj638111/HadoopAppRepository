@@ -1,0 +1,18 @@
+
+
+Info
+------------------------------------------------------------------------
+
+    CREATE TABLE    raw (line STRING)
+                    ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n';
+     
+    CREATE TABLE    raw_sequence (line STRING)
+                    STORED AS SEQUENCEFILE;
+     
+    LOAD DATA LOCAL INPATH 'src/main/input/weblog.txt.gz' INTO TABLE raw;
+     
+    SET hive.exec.compress.output=true;
+    SET io.seqfile.compression.type=BLOCK; -- NONE/RECORD/BLOCK (see below)
+    INSERT OVERWRITE TABLE raw_sequence SELECT * FROM raw;
+
+    https://cwiki.apache.org/confluence/display/Hive/CompressedStorage    

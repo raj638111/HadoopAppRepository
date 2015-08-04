@@ -1,0 +1,39 @@
+
+Info
+--------------------------------------------------------------#368
+
+    #   Data type is divided into 2,
+        +   Logical Type
+            -   We specify logical type using Primitive type
+        +   Primitive Type
+            -   The actual type associated with the Metal
+                (Serialized Representation)
+                
+
+Primitive Type
+--------------------------------------------------------------#368
+
+    #   boolean     
+    #   int32       int64       int96
+    #   float       double
+    #   binary
+    #   fixed_len_byte_array
+    
+Logical Type (Annotation)
+--------------------------------------------------------------#369
+        
+    #   UTF8                        Annotates 'binary'                        
+    #   ENUM                        more here...#369
+    #   DECIMAL(precision, scale)   ..
+    #   DATE                        ..
+    #   LIST                        message m {
+                                        required group a (LIST) {
+                                            repeated group list {
+                                                required int32 element;
+                                            }
+                                        }
+                                    }
+    #   MAP                         ..
+
+                        
+                

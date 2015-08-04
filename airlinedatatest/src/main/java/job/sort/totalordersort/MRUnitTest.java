@@ -1,7 +1,7 @@
-package job.sort.totalorder;
+package job.sort.totalordersort;
 
-import job.sort.totalorder.SortAscMonthDescWeekMRJob.SortAscMonthDescWeekMapper;
-import job.sort.totalorder.SortAscMonthDescWeekMRJob.SortAscMonthDescWeekReducer;
+import job.sort.totalordersort.SortAscMonthDescWeekMRJob.SortAscMonthDescWeekMapper;
+import job.sort.totalordersort.SortAscMonthDescWeekMRJob.SortAscMonthDescWeekReducer;
 import junit.framework.TestCase;
 
 import org.apache.hadoop.io.LongWritable;

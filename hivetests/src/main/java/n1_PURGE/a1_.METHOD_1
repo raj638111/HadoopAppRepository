@@ -1,0 +1,40 @@
+
+'member'
+---------------------------------------------------------------------------------------------------
+
+   # NOTE
+        +   We never purge the table with new value, rather we put latest values in a 
+            separate table
+        +   Through this way we can retain old records;            
+
+   CREATE TABLE stage ( field1 STRING, field2 STRING, field3 STRING, 
+                        field4 STRING, field5 STRING, field6 STRING, 
+                        field7 STRING)
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '|';
+
+    LOAD DATA LOCAL INPATH  'src/main/input/member.txt'   
+                            OVERWRITE INTO TABLE stage;
+
+   CREATE TABLE member (id INT, name STRING, address STRING, tstamp TIMESTAMP, build_id STRING)
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '|';
+
+    insert into table member select CAST(TRIM(field1) AS INT), TRIM(field2), TRIM(field3), TRIM(field4), TRIM(field5) from stage;
+
+'memberU' (Unique)
+---------------------------------------------------------------------------------------------------
+                            
+                        
+   CREATE TABLE memberU (id INT, name STRING, address STRING, tstamp TIMESTAMP, build_id STRING)
+                        ROW FORMAT DELIMITED
+                        FIELDS TERMINATED BY '|';
+
+    insert overwrite table memberU select a.id, b.name, b.address, a.tstamp, b.build_id from 
+        (select id, max(tstamp) as tstamp from member group by id) a left outer join member b on (a.id=b.id  and a.tstamp=b.tstamp);
+        
+        
+Reference
+---------------------------------------------------------------------------------------------------
+
+    http://stackoverflow.com/questions/13523049/hive-sql-find-the-latest-record

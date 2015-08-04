@@ -1,4 +1,4 @@
-package job.sort.totalorder;
+package job.sort.totalordersort;
 
 import java.io.IOException;
 
@@ -26,6 +26,15 @@ import utils.keynval.DelaysWritable;
 import utils.keynval.MonthDoWWritable;
 import utils.others.AirlineDataUtils;
 
+/**
+ * 	Sort the dataset based on (Month + Day of the week)
+ *  Key			Value
+ *  -------		------------
+ *  (1, 7)		..
+ *  (1, 6)		..
+ *  .....		..
+ *  (12, 1)		..
+ */
 public class SortAscMonthDescWeekMRJob extends Configured implements Tool {
 
     public static class SortAscMonthDescWeekMapper extends
