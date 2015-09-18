@@ -1,0 +1,2 @@
+record1	|	prevfield2|	prevfield3 
+ record2| prevfield2 	|prevfield3
