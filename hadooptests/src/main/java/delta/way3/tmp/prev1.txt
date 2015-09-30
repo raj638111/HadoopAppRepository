@@ -1,0 +1,1 @@
+record1|r1_field1|r1_field2
