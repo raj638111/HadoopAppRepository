@@ -1,5 +1,4 @@
 
-
 REGISTER tg/hadooptests-0.0.1-SNAPSHOT.jar;
 
 curDenormalized = LOAD './input' USING PigStorage('|') 
@@ -24,9 +23,41 @@ matchedRecord IF ( current::checksum IS NOT NULL and prev::checksum IS NOT NULL 
 
 
 new = FOREACH newRecord GENERATE current::field1, current::field2, current::field3;
-inactive = FOREACH noMatch GENERATE prev::field1, prev::field2, prev::field3;
+inactive = FOREACH noMatch GENERATE prev::field1, prev::field2, prev::field3, 'removethis';
 modified = FOREACH compareRecord GENERATE current::field1, current::field2, current::field3; 
 matched = FOREACH matchedRecord GENERATE current::field1, current::field2, current::field3;
+
+delta = union new, inactive, modified;
+--groupedByDep = COGROUP delta BY $1 INNER, matched BY $1 INNER;
+byDep = COGROUP delta BY $1, matched BY $1;
+byDepFiltered = filter byDep by SIZE(($1)) > 0;
+
+---------------------Solution 1
+flatLeft = FOREACH byDepFiltered GENERATE FLATTEN($1);
+filtered = FILTER flatLeft BY $3 is null;
+
+flatRight = FOREACH byDepFiltered GENERATE FLATTEN($2);
+
+flat = union filtered, flatRight;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-----------Solution 2(Not working)
+flat = foreach byDep GENERATE flatten($1), flatten($2);
+ 
+------------------------------- 
+ 
+ 
+ 
 result = union new, modified, matched;
 store result into './output' using PigStorage('|');
 --store result into './output' using org.apache.pig.piggybank.storage.MultiStorage('./output', '1');
