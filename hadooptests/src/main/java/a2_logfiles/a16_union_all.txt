@@ -1,0 +1,2 @@
+front_page,22$33
+back_page,77$88

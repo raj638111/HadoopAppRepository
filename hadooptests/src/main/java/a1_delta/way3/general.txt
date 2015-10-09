@@ -1,0 +1,43 @@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-----------Solution 2(Not working)
+flat = foreach byDep GENERATE flatten($1), flatten($2);
+ 
+------------------------------- 
+ 
+ 
+ 
+result = union new, modified, matched;
+store result into './output' using PigStorage('|');
+--store result into './output' using org.apache.pig.piggybank.storage.MultiStorage('./output', '1');
+
+newDs = FOREACH new generate field2;
+inactiveDs = foreach inactive generate field2;
+modifiedDs = foreach modified generate field2;
+
+deltaDeps = union newDs, modifiedDs, inactiveDs;
+depGroup = group deltaDeps by field2; 
+	deltaDepsUnique = foreach depGroup generate group;
+	store deltaDepsUnique into './output/deltadeps' using PigStorage('|');
+
+--allDeps = union newDs, modifiedDs, inactiveDs, matchedDs;
+--depGroup = group allDeps by field2;
+--	allDepUnqiue = foreach depGroup generate group;
+--	store allDepsUnique into './output/alldeps'
+
+--resultGroup = group result by field2;
+
+
+
+
+
+
