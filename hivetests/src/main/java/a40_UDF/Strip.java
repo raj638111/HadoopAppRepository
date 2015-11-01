@@ -1,4 +1,4 @@
-package a7_UDF;
+package a40_UDF;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.hive.ql.exec.UDF;

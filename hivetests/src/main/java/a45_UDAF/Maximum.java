@@ -1,4 +1,4 @@
-package a8_UDAF;
+package a45_UDAF;
 
 import org.apache.hadoop.hive.ql.exec.UDAF;
 import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;
