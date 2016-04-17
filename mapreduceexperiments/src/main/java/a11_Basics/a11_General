@@ -1,0 +1,36 @@
+
+
+==> Difference b/w Hadoop Old and New Versions
+   
+   #  v1 vs v2    :  http://bigdataanalyticsnews.com/hadoop-2-0-yarn-architecture/
+   #  v2          :  http://blog.c2b2.co.uk/2014/05/hadoop-v2-overview-and-cluster-setup-on.html
+      
+==> YARN Arcitecture
+   
+   #  http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html
+      
+   #  Resource Manager
+      +  Scheduler
+         -  Allocates resource(as Container..which is Memory, CPU, Disk etc...) to various running application
+         -  Is pluggable
+            .  FairScheduler, CapacityScheduler etc..
+      +  ApplicationsManager
+         -  Accepts Job submission
+         -  Negotiates with the Scheduler for the first container(which is the ApplicationMaster)
+         
+   #  ApplicationMaster
+         
+         
+   #  Node Manager
+      +  Application Master
+         -  Application specifier container negotiation with RM is handler by ApplicationMaster
+      +  Container
+         -  An abstraction for Resource in YARN
+         -  Map & Reduce jobs, Application Master gets executed inside a Container 
+                       
+   #  HDFS
+      +  NameNode    Has Meta data of HDFS
+      +  DataNode    Has actual data of HDFS
+               
+==>       
+         
